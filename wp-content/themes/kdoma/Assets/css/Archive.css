@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Geologica:wght@200;300;400;500;600&display=swap');
 
 :root {
-    --bg: #ffffff;
+    --bg: rgba(255, 255, 255, 0);
     --text: #111111;
     --muted: #666666;
     --accent: #7f0d0d;
@@ -28,13 +28,210 @@ body {
 }
 
 .container {
+    width: 90%;
+    margin-inline: auto;
+}
+
+.archive_head
+{
     display: flex;
-    flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
-    gap: 36px;
-    max-width: 1720px;
-    margin: 0 auto;
-    padding: 24px 0 0;
+    gap: 1.9vw;
+}
+
+.archive_head .breadcrumbs
+{
+    margin-bottom: 0;
+}
+
+
+.header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--gap);
+    flex-direction: row;
+}
+
+.header__title {
+    margin: 0;
+    font-size: 4.8vw;
+    font-weight: 200;
+    line-height: 1;
+}
+
+.header__filters {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--gap);
+}
+.filter_trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5vw;
+    padding: 0.4vw 0 0.4vw 1.2vw;
+    border: none;
+    background: #fff;
+    cursor: pointer;
+    font-size: 1.1vw;
+    transition: all .2s ease;
+    color: var(--text-main);
+}
+
+.filter_trigger:hover {
+    border-color: var(--text-main);
+}
+
+.filter_trigger__label {
+    font-size: 1.1vw;
+    font-weight: 300;
+    white-space: nowrap;
+}
+
+.filter_trigger_icon {
+    display: none;
+}
+
+.filter_trigger_icon__img {
+    width: 1.5vw;
+    height: 1.5vw;
+}
+
+.filter_overlay {
+    position: fixed;
+    inset: 0;
+    background: transparent;
+    z-index: 900;
+}
+
+.filter_overlay[hidden] {
+    display: none;
+}
+
+.filter_dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1000;
+    margin-top: 0.5vw;
+}
+
+.filter_dropdown[hidden] {
+    display: none;
+}
+
+.filter_dropdown__panel {
+    width: 22vw;
+    max-height: 70vh;
+    overflow: auto;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    box-shadow: 0 0.5vw 1.5vw rgba(0, 0, 0, .12);
+    padding: 1vw;
+}
+
+.filter_dropdown__head, .filter_dropdown__foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5vw;
+}
+
+.filter_dropdown__title {
+    font-weight: 600;
+    font-size: 1.1vw;
+}
+
+.filter_dropdown__count {
+    color: #666;
+    margin-left: 0.3vw;
+    font-size: 0.9vw;
+}
+
+.filter_dropdown__close {
+    width: 1.8vw;
+    height: 1.8vw;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+}
+.filter_dropdown__close.mobile_drawer__close::before, .filter_dropdown__close.mobile_drawer__close::after
+{
+    left: 50%;
+}
+.filter_dropdown__panel .mobile_drawer__head
+{
+    margin-bottom: 2vw;
+}
+
+.filter_dropdown__body {
+    padding: 0.5vw 0;
+}
+
+.filter_acc {
+    border-bottom: 1px solid #eee;
+    padding: 0.6vw 0;
+}
+
+.filter_acc__sum {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 300;
+    font-size: 1.1vw;
+    padding: 0.3vw 0;
+}
+
+.filter_acc__sum img {
+    width: 0.8vw;
+    height: 0.8vw;
+    transform: rotate(0deg);
+    transition: transform .2s ease;
+}
+
+.filter_acc[open] > .filter_acc__sum img {
+    transform: rotate(180deg);
+}
+
+.filter_acc__sum::-webkit-details-marker {
+    display: none;
+}
+
+.filter_acc__body {
+    padding: 0.8vw 0 0.4vw;
+}
+
+.filter_check {
+    display: block;
+    font-size: 0.9vw;
+    margin: 0.4vw 0;
+    cursor: pointer;
+}
+
+.filter_dropdown__apply, .filter_dropdown__reset {
+    padding: 0.6vw 0.8vw;
+    border: 1px solid var(--border);
+    background: #fff;
+    cursor: pointer;
+    font-size: 0.9vw;
+    transition: all .2s ease;
+}
+
+.filter_dropdown__apply:hover, .filter_dropdown__reset:hover {
+    background: #f5f5f5;
+}
+
+.catalog
+{
+    padding-bottom: 5.2vw;
 }
 
 .page_head {
@@ -42,13 +239,6 @@ body {
     background: linear-gradient(#fff, #fffcc0 0) padding-box;
     background: #fff;
     z-index: 5;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.title {
-    margin: 0 0 12px;
-    font-size: 70px;
-    font-weight: 200;
 }
 
 .years {
@@ -82,13 +272,13 @@ body {
     box-shadow: 0 0 0 2px rgba(127, 13, 13, .08) inset;
 }
 
-.grid {
+.arhive_grid {
     list-style: none;
     padding: 0;
-    margin: 24px 0 0;
     display: grid;
     grid-template-columns:repeat(4, 1fr);
-    column-gap: 31px;
+    gap: 1.6vw;
+    margin: 0 auto;
 }
 
 .filter_trigger_icon {
@@ -183,6 +373,16 @@ body {
     height: 100%;
     cursor: default;
     transition: none;
+    background-image: url('../image/2024.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.card__cover__year img
+{
+    max-width: unset;
+    height: 100%;
 }
 
 .card__link {
@@ -231,19 +431,24 @@ body {
 }
 
 .card__meta {
-    padding: 10px 0 30px;
+    padding: 1vw 0 0;
 }
 
 .card__title {
-    margin: 0 0 6px;
-    font-size: 24px;
+    margin: 0 0 0.35vw;
+    font-size: 1.25vw;
     font-weight: 300;
+    letter-spacing: -0.03em;
+    line-height: 135%;
 }
 
 .card__year {
     margin: 0;
     color: black;
-    font-size: 24px;
+    font-size: 1.25vw;
+    letter-spacing: -0.03em;
+    line-height: 135%;
+    font-weight: 300;
 }
 
 .visually_hidden {
@@ -258,51 +463,136 @@ body {
     border: 0;
 }
 
-@media (min-width: 360px) and (max-width: 767px) {
+@media (max-width: 767px) {
     .container {
-        max-width: clamp(320px, 95vw, 720px);
-        padding-left: clamp(8px, 3vw, 16px);
-        padding-right: clamp(8px, 3vw, 16px);
-        padding-top: clamp(12px, 2.5vw, 16px);
-        padding-bottom: 0;
-        display: flex;
-        justify-content: space-between;
+        padding: 0;
+        padding-bottom: 8vw;
+        width: 90%;
     }
 
-    .title {
-        font-size: clamp(26px, 4.2vw, 30px);
+        .header {
+        flex-direction: inherit;
+        align-items: end;
+        gap: 43%;
+    }
+
+    .header__title {
+        font-size: 8vw;
         font-weight: 200;
+    }
+
+
+
+    .filter_trigger {
+        display: none;
+    }
+
+    .filter_trigger_icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 8vw;
+        height: 8vw;
+        border: none;
+        border-radius: 6px;
+        background: #fff;
+        padding: 0 0 1vw 0;
+        margin-right: -0.8vw;
+    }
+
+    .filter_trigger_icon__img {
+    width: 100%;
+    height: auto;
+    }
+
+    .filter_dropdown {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    margin: 0;
+    }
+
+    .filter_dropdown__panel {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    border-radius: 0;
+    border: none;
+    padding: 5vw;
+    box-sizing: border-box;
+    }
+
+    .filter_dropdown__title {
+    font-size: 5vw;
+    }
+
+    .filter_dropdown__count {
+    font-size: 4vw;
+    }
+
+    .filter_dropdown__close {
+    width: 8vw;
+    height: 8vw;
+    }
+
+    .filter_acc__sum {
+    font-size: 4.5vw;
+    padding: 2vw 0;
+    }
+
+    .filter_acc__sum img {
+    width: 3vw;
+    height: 3vw;
+    }
+
+    .filter_acc__body {
+    padding: 2vw 0 1vw;
+    }
+
+    .filter_check {
+    font-size: 4vw;
+    margin: 2vw 0;
+    }
+
+    .catalog
+    {
+        padding-bottom: 14vw;
+    }
+
+    .archive_head
+    {
+        padding-bottom: 0;
+        justify-content: space-between;
+        align-items: flex-end;
     }
 
     .years {
         display: none
     }
 
-    .grid {
+    .arhive_grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: clamp(14px, 3vw, 20px) clamp(12px, 2.5vw, 18px);
-        margin-top: clamp(10px, 2.5vw, 16px);
+        gap: 4.7vw;
     }
 
-    .grid > .card.card__year {
+    .arhive_grid > .card.card__year {
         grid-column: auto;
         border: none;
         box-shadow: none;
         justify-self: start;
     }
 
-    .grid > .card.card__year > .card__link {
+    .arhive_grid > .card.card__year > .card__link {
         display: block;
     }
 
-    .grid > .card.card__year .card__cover {
+    .arhive_grid > .card.card__year .card__cover {
         aspect-ratio: 150 / 257;
         width: 100%;
-    }
-    .catalog
-    {
-        margin-bottom: 60px;
     }
 
     .card__year img {
@@ -330,8 +620,13 @@ body {
         padding: 0 clamp(2px, 1vw, 4px) 0;
     }
 
+    .archive_head .breadcrumbs
+    {
+        margin-bottom: 0;
+    }
+
     .card__title {
-        font-size: clamp(13px, 2.2vw, 16px);
+        font-size: 3.7vw;
         line-height: 1.25;
         font-weight: 300;
         margin: 0 0 4px;
@@ -342,21 +637,21 @@ body {
     }
 
     .card__year {
-        font-size: clamp(12px, 2.2vw, 16px);
+        font-size: 3.7vw;
         color: #000;
         font-weight: 300;
         margin: 0 0 2px;
+        width: 100%;
     }
 
     .filter_trigger_icon {
         display: inline-flex;
-        padding: clamp(6px, 1.8vw, 8px);
         border-radius: clamp(8px, 2.4vw, 10px);
     }
 
     .filter_trigger_icon__img {
-        width: clamp(18px, 3.2vw, 22px);
-        height: clamp(18px, 3.2vw, 22px);
+        width: 100%;
+        height: auto;
     }
 
     .show_more, .btn_show_more {
@@ -369,8 +664,43 @@ body {
         --scale: clamp(1, calc(1 + (100vw - 768px) / (1024 - 768) * 0.20), 1.2);
     }
 
+    .archive_head .breadcrumbs
+    {
+        margin-bottom: 0;
+    }
+
     .filter_trigger_icon {
         display: none
+    }
+
+     .header__title {
+        font-size: 6.5vw;
+    }
+
+    .filter_trigger__label {
+    font-size: 2.4vw;
+    }
+
+    .filter_trigger {
+    padding: 0.6vw 0 0.6vw 1.6vw;
+    gap: 0.8vw;
+    }
+
+    .filter_dropdown__panel {
+    width: 35vw;
+    padding: 2vw;
+    }
+
+    .filter_dropdown__title {
+    font-size: 1.8vw;
+    }
+
+    .filter_acc__sum {
+    font-size: 1.6vw;
+    }
+
+    .filter_check {
+    font-size: 1.4vw;
     }
 
     .years_dropdown {
@@ -378,37 +708,38 @@ body {
     }
 
     .container {
-        display: flex;
-        justify-content: space-between;
-        padding-top: calc(20px * var(--scale));
+        width: calc(100% - 40px);
+        margin-inline: auto;
+    }
+    
+    .archive_head
+    {
+        align-items: flex-end;
     }
 
-    .title {
-        width: calc(42% * var(--scale));
-        font-size: 50px;
-        font-weight: 200;
-        letter-spacing: -0.02em;
+    .catalog
+    {
+        padding-bottom: 10.4vw;
     }
 
-    .grid > .card.card__year {
+    .arhive_grid > .card.card__year {
         grid-column: auto;
         border: none;
         box-shadow: none;
         justify-self: start;
     }
 
-    .grid > .card.card__year > .card__link {
+    .arhive_grid > .card.card__year > .card__link {
         display: block;
     }
 
-    .grid > .card.card__year .card__cover {
+    .arhive_grid > .card.card__year .card__cover {
         aspect-ratio: 150 / 257;
         width: 100%;
     }
 
     .card__year img {
         width: 100%;
-        height: 90%;
         object-fit: cover;
         display: block;
     }
@@ -419,10 +750,10 @@ body {
     }
 
     .year {
-        width: 67px;
+        width: 10vw;
         padding-left: calc(5px * var(--scale));
         padding-right: calc(5px * var(--scale));
-        font-size: 20px;
+        font-size: 2.6vw;
     }
 
     .year.is_active {
@@ -431,9 +762,10 @@ body {
         box-shadow: 0 0 0 2px rgba(127, 13, 13, .08) inset;
     }
 
-    .grid {
+    .arhive_grid {
         display: grid;
-        margin-top: calc(18px * var(--scale));
+        margin-top: 5.2vw;
+        gap: 2.6vw;
     }
 
     .card__year {
@@ -451,8 +783,6 @@ body {
     }
 
     .card {
-        width: calc(167px * var(--scale));
-        height: calc(286px * var(--scale));
         display: flex;
         flex-direction: column;
         overflow: hidden;
@@ -485,15 +815,13 @@ body {
 
     .card__meta {
         flex: 1 1 auto;
-        padding-left: calc(8px * var(--scale));
-        padding-right: calc(8px * var(--scale));
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
     }
 
     .card__title {
-        font-size: 18px;
+        font-size: 2.35vw;
         font-weight: 300;
         line-height: 1.28;
         margin-bottom: calc(6px * var(--scale));
@@ -504,9 +832,9 @@ body {
     }
 
     .card__year {
-        font-size: calc(18px * var(--scale));
+        font-size: 2.35vw;
         font-weight: 300;
         color: black;
-        margin-top: calc(-8px * var(--scale));
+        width: 100%;
     }
 }

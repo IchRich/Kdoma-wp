@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@200;300;400;500;600&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Geologica, sans-serif;
+    color: var(--text);
+    background: #fff;
+    margin: 0;
+    line-height: 1.5;
+}
+:root {
+    --gap: 1.6vw;
+    --gapm: 5.5vw;
+    --edge: 0.57vw;}
+
+
+.container {
+    width: 90%;
+    margin-inline: auto;
+}
+
+.section{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.events_img{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);;
+    width: 100%;
+    overflow: hidden;
+    gap: var(--gap);
+}
+
+.event_img_mini img {
+    width: 100%;
+    height: 32vw;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.event_img{
+    grid-column: span 2;
+}
+.event_img img{
+    width: 100%;
+    height: 29.5vw;
+    object-fit: cover;
+    cursor: pointer;
+}
+.actions{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2.1vw;
+    margin-bottom: 5.2vw;
+}
+
+.btn{
+    appearance: none;
+    border: 1px solid black;
+    background: none;
+    color: black;
+    font-size: 1vw;
+    font-weight: 300;
+    font-family: 'Geologica', serif;
+    width: calc((100% - (var(--gap) * 3)) / 4);
+    height: 3.1vw;
+    cursor: pointer;
+    transition: color 0.15s
+    ease, border-color 0.15s
+    ease, transform 0.05s
+    ease;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        width: calc(100% - 40px);
+        margin-inline: auto;
+    }
+    .btn {
+        width: calc(50% - (var(--gap) / 2));
+        height: 5vw;
+        font-size: 1.3vw;
+    }
+    .actions
+    {
+        margin-top: 4vw;
+        margin-bottom: 10.4vw;
+    }
+}
+@media (max-width: 767px){
+    .title-min {
+        display: flex;
+        align-items: flex-start;
+    }
+
+
+    .container{
+        width: 90%;
+        padding: 0;
+        padding-bottom: 8vw;
+    }
+    .page
+    {
+        padding-bottom: 0;
+    }
+
+    .event_img_mini img {
+        width: 100% ;
+        height: auto;
+        object-fit: cover;
+        cursor: pointer;
+    }
+
+
+    .events_img{
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--gapm);
+    }
+
+    .event_img img{
+        width: 100% ;
+        height: auto;
+        object-fit: cover;
+        cursor: pointer;
+    }
+
+    .btn {
+        width: 100%;
+        min-width: 0;
+        height: 11vw;
+        font-size: 3.5vw;
+    }
+    .actions{
+        margin-top: 5.5vw;
+        margin-bottom: 16.8vw;
+    }
+}
