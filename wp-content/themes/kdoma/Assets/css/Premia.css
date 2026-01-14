@@ -1,0 +1,707 @@
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@200;300;400;500;600&display=swap');
+
+/* ===== ROOT ===== */
+:root{
+  --container: 90%;
+  --gap: 2.3vw;
+  --edge: 0.57vw;
+  --text: #111;
+  --muted: #444;
+  --brand: rgba(173, 12, 12, 1);
+  --gap-premia: 3.1vw;
+}
+
+*{ box-sizing: border-box; margin: 0;}
+
+html, body{ height: 100%; overflow-x: hidden; }
+
+body{
+  margin: 0;
+  color: var(--text);
+  font-family: Geologica, system-ui, Arial, sans-serif;
+}
+
+img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+section{
+  width: 100%;
+  max-width: var(--container);
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+}
+
+h2 {
+  font-size: 2.6vw;
+  font-weight: 200;
+  font-family: Geologica, sans-serif;
+  line-height: 1;
+}
+
+.title2
+{
+  font-family: Geologica, sans-serif;
+  font-weight: 400;
+  font-size: 1.3vw;
+  line-height: 110%;
+  letter-spacing: -0.03em;
+  margin-bottom: 1vw;
+}
+
+.btn
+{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 3.2vw;
+  padding: 0 24px;
+  font-size: 1vw;
+  font-weight: 300;
+  text-decoration: none;
+  cursor: pointer;
+  transition: .2s ease;
+  white-space: nowrap;
+  font-family: inherit;
+  text-transform: uppercase;
+}
+.btn img
+{
+  width: auto;
+}
+.btn--primary
+{
+  background: var(--brand);
+  color: #fff;
+  border: 1px solid var(--brand);
+}
+.btn--primary:hover {
+  background: #991515;
+  border-color: #991515;
+}
+.btn--outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--text);
+}
+.btn--outline:hover {
+  background: var(--text);
+  color: #fff;
+}
+
+.Main_text2
+{
+  font-family: Geologica, sans-serif;
+  font-weight: 300;
+  font-size: 1vw;
+  line-height: 110%;
+  letter-spacing: -0.03em;
+}
+.ceremony
+{
+  display: flex;
+  flex-direction: column;
+  padding-top: 0;
+}
+.header_premia
+{
+  display: grid;
+  grid-template-columns: 24% auto;
+  gap: 2.9vw;
+  margin-bottom: var(--gap-premia);
+}
+
+.header_premia_text
+{
+  display: flex;
+  gap: 2.9vw;
+  align-items: flex-end;
+}
+
+.award_title
+{
+  font-family: Geologica, sans-serif;
+  font-weight: 200;
+  font-size: 3.6vw;
+  line-height: 110%;
+  letter-spacing: -0.03em;
+  color: var(--brand);
+  margin-bottom: var(--gap-premia);
+}
+
+.award_sub_title
+{
+  font-family: Geologica, sans-serif;
+  font-weight: 200;
+  font-size: 2.6vw;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin: 0 0 2.6vw;
+  text-transform: uppercase;
+}
+
+.award_ceremony_grid
+{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: var(--gap-premia);
+  row-gap: 2vw;
+  align-items: end
+}
+
+.award_ceremony_grid_item
+{
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
+  padding-left: 1vw;
+  border-left: solid 1px var(--text);
+  justify-content: space-between;
+  height: 100%;
+}
+
+.nomination_title
+{
+  font-family: Geologica, sans-serif;
+  font-weight: 400;
+  font-size: 1.6vw;
+  line-height: 110%;
+  letter-spacing: -0.03em;
+}
+
+.nomination_text
+{
+  font-family: Geologica, sans-serif;
+  font-weight: 300;
+  font-size: 1.25vw;
+  line-height: 110%;
+  letter-spacing: -0.03em;
+}
+
+.history_section .award_sub_title
+{
+  margin: 0 0 1vw;
+}
+
+.history_section .nomination_title
+{
+  margin: 0 0 2.6vw;
+}
+.history_grid
+{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--gap-premia);
+  row-gap: 3.9vw;
+}
+
+.fotoreport_container
+{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: var(--gap-premia);
+  align-items: end;
+}
+
+.fotoreport_photo
+{
+  grid-column: 1 / 3;
+}
+.slider {
+  width: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.slider-wrapper {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+.slider_container
+{
+  display: flex;
+  align-items: flex-end;
+  gap: var(--gap-premia);
+}
+
+.desc_foto_slider
+{
+  padding-bottom: 1.1vw;
+  width: 50%;
+}
+
+.slide {
+  flex: 0 0 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+.btn_slider {
+    position: absolute;
+    top: 0;
+    width: 7%;
+    height: calc(100% - 1.1vw);
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(67px);
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, background 0.2s ease;
+}
+
+
+.btn_slider.prev {
+  left: 0;
+}
+
+.btn_slider.next {
+  right: 0;
+}
+
+.btn_slider span {
+    color: #fff;
+    font-size: 22px;
+    font-weight: bold;
+    user-select: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*.btn_slider.prev::after {*/
+/*    content: "";*/
+/*    width: 10px;*/
+/*    height: 10px;*/
+/*    border-right: 2px solid #fff;*/
+/*    border-top: 2px solid #fff;*/
+/*    transform: rotate(225deg);*/
+/*    display: block;*/
+/*    transition: border-color 0.2s ease;*/
+/*}*/
+
+/*.btn_slider.next::after {*/
+/*    content: '';*/
+/*    display: block;*/
+/*    width: 12px;*/
+/*    height: 12px;*/
+/*    border-top: 2px solid #fff;*/
+/*    border-right: 2px solid #fff;*/
+/*    transform: rotate(45deg);*/
+/*}*/
+
+
+.btn_slider.next img{
+    width: 1vw;
+    height: 1vw;
+}
+.btn_slider.prev img{
+    width: 1vw;
+    height: 1vw;
+}
+.slider:hover .btn_slider {
+    opacity: 1;
+    visibility: visible;
+}
+
+.btn_slider :hover {
+    background: rgba(0, 0, 0, .42);
+}
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 0.5vw;
+}
+
+.slider-dot {
+  width: 0.6vw;
+  height: min-content;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.slider-dot.active {
+  background: var(--brand);
+}
+
+.slider_desc
+{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5vw;
+}
+
+.history_grid .btn.btn--outline
+{
+  grid-column: 2;
+  width: calc(50% - (var(--gap-premia) / 2));
+  margin-left: auto;
+}
+
+.partners_logo
+{
+  display: flex;
+  justify-content: space-between;
+}
+
+.partner_logo
+{
+  max-height: 2.5vw;
+  width: fit-content;
+}
+
+.partners_section .award_sub_title
+{
+  margin-bottom: 1vw;
+}
+.partners_section .nomination_title
+{
+  margin-bottom: 2.6vw;
+}
+.btn_fotorepotr
+{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.62vw;
+  height: 3.1vw;
+  border: 1px solid #111;
+  font-weight: 300;
+  color: #111;
+  background: #fff;
+  text-decoration: none;
+  transition: all .18s ease;
+  font-size: 1.04vw;
+  margin-top: auto;
+  grid-column: 4;
+}
+.fotoreport_container .title2
+{
+  font-weight: 300;
+  margin-bottom: 0;
+  line-height: 135%
+}
+
+.award_ceremony_grid .btn.btn--outline
+{
+  display: none;
+}
+
+@media (max-width: 767px) 
+{
+  :root
+  {
+    --gap-premia: 8.4vw;
+  }
+  .header_premia
+  {
+    grid-template-columns: 1fr;
+    gap: var(--gap-premia);
+  }
+  .header_premia img 
+  {
+    width: 50%;
+    margin: auto;
+  }
+  .header_premia_text
+  {
+    flex-direction: column;
+  }
+  .header_premia_text .Main_text2:nth-child(2)
+  {
+    display: none;
+  }
+  .Main_text2
+  {
+    font-size: 5vw;
+  }
+  .award_title
+  {
+    font-size: 8.3vw;
+    line-height: 100%;
+    letter-spacing: -0.05em;
+  }
+  .award_sub_title
+  {
+    font-size: 7vw;
+    margin: 0 0 5.6vw;
+  }
+  .award_ceremony_grid
+  {
+    grid-template-columns: 1fr;
+    row-gap: 4.2vw;
+  }
+  .nomination_title
+  {
+    font-size: 5.6vw;
+  }
+  .nomination_text
+  {
+    font-size: 4.45vw;
+  }
+  .award_ceremony_grid_item
+  {
+    gap: 2.8vw;
+    padding-left: 2.8vw;
+  }
+  .history_grid
+  {
+    grid-template-columns: 1fr;
+  }
+  .history_grid .btn.btn--outline
+  {
+    grid-column: 1;
+    width: 100%;
+  }
+  .slider_container
+  {
+    flex-direction: column;
+  }
+  .slider, .desc_foto_slider
+  {
+    width: 100%;
+  }
+  .btn
+  {
+    width: 100%;
+    height: 11vw;
+    font-size: 3.5vw;
+  }
+  .award_ceremony_grid .btn.btn--outline
+  {
+    display: block;
+  }
+  .nomination_title
+  {
+    font-size: 4.5vw;
+  }
+  .history_section .nomination_title
+  {
+    margin: 0 0 4vw;
+  }
+  .title2
+  {
+    font-size: 5.6vw;
+    margin-bottom: 4vw;
+  }
+  .Main_text2
+  {
+    font-size: 4.5vw;
+  }
+  .slider_container
+  {
+    gap: 4.2vw;
+  }
+  .slider-dot
+  {
+    width: 3.6vw;
+  }
+  .slider-dots
+  {
+    margin-top: 2.8vw;
+  }
+  .btn_slider
+  {
+    height: calc(100% - 6.4vw);
+  }
+  .slider_desc
+  {
+    gap: 2.8vw;
+  }
+  .history_grid
+  {
+    gap: 8.4vw;
+  }
+  .fotoreport_container
+  {
+    grid-template-columns: 1fr;
+  }
+  .fotoreport_photo
+  {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .fotoreport_container .title2
+  {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .btn_fotorepotr
+  {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  .fotoreport_container .title2
+  {
+    font-size: 5.5vw;
+    line-height: 110%;
+  }
+  .partner_logo:nth-child(n+4)
+  {
+    display: none;
+  }
+  .partner_logo
+  {
+    max-height: 9.5vw;
+  }
+  .btn_slider {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) 
+{
+  :root
+  {
+    --gap-premia: 2.6vw;
+  }
+  section
+  {
+    padding-top: 4.6vh;
+    padding-bottom: 4.6vh;
+    width: calc(100% - 40px);
+    max-width: 100%;
+  }
+  .Main_text2
+  {
+    font-size: 2.3vw;
+  }
+  .header_premia
+  {
+    grid-template-columns: 24% auto;
+  }
+  .header_premia_text
+  {
+    flex-direction: column;
+  }
+  .header_premia_text .Main_text2:nth-child(2)
+  {
+    display: none;
+  }
+  .award_title
+  {
+    font-size: 6.5vw;
+  }
+  .award_sub_title
+  {
+    font-size: 4.6vw;
+  }
+  .award_ceremony_grid
+  {
+    grid-template-columns: 1fr 1fr;
+  }
+  .nomination_title
+  {
+    font-size: 3.2vw;
+  }
+  .nomination_text
+  {
+    font-size: 2.3vw;
+  }
+  .award_ceremony_grid_item
+  {
+    gap: 2vw;
+  }
+  .award_ceremony_grid .btn.btn--primary
+  {
+    grid-column: 2;
+    margin-top: 4vw;
+  }
+  .btn 
+  {
+    height: 5vw;
+    font-size: 1.3vw;
+  }
+  .history_section .nomination_title
+  {
+    margin: 0 0 3.6vw;
+  }
+  .slider_container
+  {
+    flex-direction: column;
+  }
+  .slider, .desc_foto_slider
+  {
+    width: 100%;
+  }
+  .title2
+  {
+    font-size: 3.1vw;
+  }
+  .slider-dots
+  {
+    margin-top: 1.3vw;
+  }
+  .slider-dot
+  {
+    width: 1.6vw;
+  }
+  .btn_slider
+  {
+    height: calc(100% - 2.9vw);
+  }
+  .history_grid .btn.btn--outline
+  {
+    width: 100%;
+  }
+
+  .fotoreport_container
+  {
+    align-items: stretch;
+  }
+  .fotoreport_container .title2
+  {
+    font-size: 2.3vw;
+    grid-column: 3 / 5;
+    grid-row: 1;
+  }
+  .btn_fotorepotr
+  {
+    grid-column: 3 / 5;
+    grid-row: 2;
+  }
+  .fotoreport_photo
+  {
+    grid-row: 1/3;
+  }
+    .partner_logo:nth-child(n+7)
+  {
+    display: none;
+  }
+  .partner_logo
+  {
+    max-height: 4.5vw;
+  }
+  .award_ceremony_grid .btn.btn--outline
+  {
+    display: none;
+  }
+  .btn_slider {
+    display: none;
+  }
+}

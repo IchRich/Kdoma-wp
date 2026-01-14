@@ -40,17 +40,21 @@ Template Name: Events
                     foreach( $myposts as $post ){
                         setup_postdata( $post );
                         ?>
-                             <li class="event event__<?=get_the_tags($post)[0]->name?>">
+                          <li class="event event__<?= get_the_tags($post)[0]->name ?>">
                                 <article class="event__inner">
-                                 <a class="event__media" href="#">
-                                <img src="<?=the_post_thumbnail_url()?>" alt="Открытие нового салона «Мебельград» и семинар «Квартира для посуточной аренды»" loading="lazy">
-                                </a>
-                            <div class="event__content">
-                                <h3 class="event__title"><?=the_title()?></h3>
-                                <p class="event__meta"><?=the_content()?></p>
-                            </div>
-                            </article>
-                            </li>
+
+                                    <a class="event__media" href="<?php the_permalink(); ?>">
+                                        <img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" loading="lazy">
+                                    </a>
+
+                                    <div class="event__content">
+                                        <h3 class="event__title"><?php the_title(); ?></h3>
+                                        <p class="event__meta"><?php the_excerpt(); ?></p>
+                                    </div>
+
+                                </article>
+                        </li>
+
                         <?php
                     }
                 } else { ?>

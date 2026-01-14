@@ -1,0 +1,263 @@
+@import url("https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap");
+:root {
+
+}
+:root {
+    --primary: #B91C1C;
+    --text: #111;
+    --muted: #666;
+    --border: #ddd;
+    --bg-light: #E6E6E6;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+html,
+body {
+    height: 100%;
+    margin: 0;
+    background: var(--bg);
+}
+
+.container {
+    width: 90%;
+    margin-inline: auto;
+}
+.Dear_architects{
+    width: 77%;
+
+}
+.Dear_architects h1{
+    margin-top: 2.6vw;
+    font-size: 1.8vw;
+    font-weight: 300;
+    line-height: 100%;
+    margin-bottom: 0;
+}
+.Dear_architects p{
+    margin-top: 1.5vw;
+    margin-bottom: 0;
+    font-size: 1vw;
+    font-weight: 300;
+    line-height: 110%;
+    width: 30.7vw;
+}
+.Dear_architectss {
+    grid-column: 2 / 2;
+}
+.Dear_architectss h1{
+    margin-top: 2.6vw;
+    font-size: 1.8vw;
+    font-weight: 300;
+    line-height: 100%;
+    margin-bottom: 0;
+}
+
+
+.Nominations_titel{
+    font-size: 2.6vw;
+    margin: 0;
+    font-weight: 200;
+    line-height: 110%;
+    margin-top: 5vw;
+}
+.Nominations_titel_mini{
+    font-size: 1.6vw;
+}
+.Nominations p {
+    font-size: 1vw;
+    margin-bottom: 0;
+    font-weight: 300;
+    line-height: 110%;
+}
+.Nominations_grid{
+    display: block;
+    gap: 1.5vw;
+}
+.input-container__select{
+    width:  43.3vw;
+    height: 3.1vw;
+    background-color: #ffffff;
+
+    border: 1px solid var(--text);
+}
+.__select {
+    background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23 7L12 18L1 7" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 40px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    color: #111111;
+}
+
+.__select:focus {
+    color: #111111;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M23 7L12 18L1 7' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' transform='rotate(180 12 12)'/%3E%3C/svg%3E");
+}
+
+.Nominations_article p{
+    margin-bottom: 0.5vw;
+    font-size: 1vw;
+}
+.Nominations_flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.Nominations_grid_dop{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:3.5vw;
+}
+.Nominations_grid_dop_flex{
+    width: 100%;
+}
+.Nominations_grid_dop_flex div{
+    display: flex;
+    align-items: flex-start;
+    margin-top: 1vw;
+}
+.Nominations_grid_dop_flex p {
+    margin: 0;
+}
+.btn--primary {
+    background: var(--primary);
+    color: #fff;
+    border: 1px solid var(--primary);
+}
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 3.2vw;
+    padding: 0 24px;
+    font-size: 1vw;
+    font-weight: 300;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 2vw;
+    transition: .2s
+    ease;
+    white-space: nowrap;
+    font-family: inherit;
+    margin-bottom: 5vw;
+}
+.checkbox-container__input{
+    margin-left: 0;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        width: calc(100% - 40px);
+        margin-inline: auto;
+        gap: 0;
+    }
+    .Nominations{
+        margin-top: 5vw;
+    }
+    .Dear_architects h1{
+        font-size: 3.2vw;
+    }
+    .Dear_architects p{
+        font-size: 2.3vw;
+        width: 90%;
+    }
+    .Dear_architects{
+        width: 100%;
+    }
+    .Nominations h1{
+        font-size: 4.5vw;
+    }
+    .Nominations p {
+        font-size: 2vw;
+    }
+    .Nominations_grid_dop {
+        display: block;
+    }
+    .Nominations_article p{
+        font-size: 2.3vw;
+        width: 46vw;
+    }
+
+    .input-container__select{
+        height: 5.8vw;
+        width: 100%;
+    }
+    .btn{
+        height: 4.6vw;
+        font-size: 2vw;
+        margin: 4vw 0 10vw 0;
+    }
+    .Nominations_grid_dop_flex{
+        width: 100%;
+        grid-column: 2 / 2;
+
+    }
+    .Dear_architectss {
+        grid-row: 2 / 2;
+    }
+
+}
+@media (max-width: 767px) {
+        .container {
+            padding: 0;
+            padding-bottom: 8vw;
+            width: 90%;
+        }
+    .Dear_architects h1{
+        font-size: 5.3vw;
+    }
+    .Dear_architects p{
+        font-size: 4.2vw;
+        width: 100%;
+    }
+    .Nominations h1{
+        font-size: 6.6vw;
+    }
+    .Nominations p {
+        font-size: 4.2vw;
+    }
+    .Nominations_flex{
+        display: block;
+    }
+    .input-container__select{
+        width: 100%;
+        height: 10.6vw;
+        margin-bottom: 2.5vw;
+
+    }
+    .Nominations_article p{
+        font-size: 4.2vw;
+        line-height: 110%;
+        font-weight: 300;
+        margin-bottom:2.5vw;
+
+    }
+    .Nominations_grid_dop{
+        display: block;
+    }
+    .btn{
+        height: 10.6vw;
+        font-size: 4.2vw;
+    }
+
+    .Nominations_grid_dop_flex{
+        width: 100%;
+        grid-column: 2 / 2;
+
+    }
+    .Nominations_grid_dop_flex div {
+        margin-bottom: 4vw;
+    }
+    .Dear_architectss {
+        grid-row: 2 / 2;
+    }
+
+}

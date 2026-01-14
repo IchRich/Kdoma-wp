@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@200;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@200;300;400;500;600&display=swap');
 
 :root {
     --container: 1200px;
@@ -29,8 +29,9 @@ body {
 
 .container {
     position: relative;
-    max-width: 1720px;
-    margin: 0 92px 80px;
+    width: 90%;
+    margin: auto;
+    padding: 0 0 2vh 0;
 }
 
 .page_title {
@@ -40,15 +41,42 @@ body {
 }
 
 .brand_stack {
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 1100;
+    position: fixed;
+    z-index: 900;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     transform: translateY(0);
     will-change: transform;
+    width: 16.5%;
+    right: 5%;
+    top: 11.15vw;
+    transition: all 0.3s ease;
+}
+.container.content {
+    position: relative;
+}
+
+
+.brand_stack.sticky-fixed {
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 1200px; 
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.brand_stack.sticky-bottom {
+    position: absolute;
+    bottom: 10.5vw;
+    top: auto;
+    right: 0;
+    left: auto;
+    width: 18.5%;
 }
 
 .brand_stack__logo img {
@@ -61,8 +89,8 @@ body {
     position: relative;
     display: grid;
     place-items: center;
-    width: 320px;
-    height: 410px;
+    width: 100%;
+    height: 15vw;
     background: rgba(145, 145, 145, 1);
     color: #fff;
     text-decoration: none;
@@ -72,17 +100,17 @@ body {
 .brand_stack__cta .cta__text {
     white-space: nowrap;
     font-family: 'Geologica', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    font-size: 24px;
+    font-size: 1.25vw;
     font-weight: 300;
     line-height: 1;
 }
 
 .brand_stack__cta .cta__arrow {
     position: absolute;
-    right: 14px;
-    bottom: 12px;
-    width: 40px;
-    height: 40px;
+    right: 0.75vw;
+    bottom: 0.65vw;
+    width: 2vw;
+    height: 2vw;
     object-fit: contain;
     pointer-events: none;
 }
@@ -98,60 +126,73 @@ body {
     display: flex;
     flex-direction: column;
     gap: var(--gap_y);
+    width: 80%;
 }
 
 .row {
     display: flex;
-    gap: 45px;
     align-items: start;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 32px;
+    justify-content: space-between;
+    column-gap: 1.55vw;
 }
 
 .about {
     display: flex;
-    column-gap: 16px;
-    row-gap: 12px;
+    column-gap: 1.55vw;
     align-items: start;
+    width: 49%;
 }
 
 .about__avatar {
-    width: 320px;
-    height: 444px;
+    width: 50%;
+    height: 23vw;
     object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 0.5s ease;
+}
+
+.about__avatar:hover {
+    filter: grayscale(0%);
 }
 
 .about__info {
-    min-width: 0
+    width: 50%;
+    height: 23vw;
+    display: flex;
+    flex-direction: column;
 }
 
 .about__name {
-    margin: 0 0 6px;
+    margin: 0 0 0.52vw;
     font-weight: 400;
-    font-size: 24px;
+    font-size: 1.25vw;
+    line-height: 1.1;
     font-family: Geologica, Arial, sans-serif;
+    letter-spacing: -0.03em;
 }
 
 .about__roles {
-    margin: 0 0 16px;
     font-weight: 300;
-    font-size: 20px;
+    font-size: 1vw;
     color: black;
+    margin: 0;
 }
 
 .about__cta {
-    margin-top: 314px;
-    width: 100%;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 14px;
-    border: 1px solid var(--accent);
-    color: var(--text);
-    text-decoration: none;
-    font-size: 20px;
+    justify-content: center;
+    gap: 0.62vw;
+    width: 100%;
+    height: 3.1vw;
+    border: 1px solid #111;
     font-weight: 300;
-    transition: background .18s ease, color .18s ease;
+    color: #111;
+    background: #fff;
+    text-decoration: none;
+    transition: all .18s ease;
+    font-size: 1.04vw;
+    margin-top: auto;
 }
 
 .about__cta:hover img {
@@ -166,7 +207,7 @@ body {
 }
 
 .work {
-    width: 40%
+    width: 49%
 }
 
 .work_slider {
@@ -190,13 +231,13 @@ body {
 .work_slider__slide img {
     display: block;
     width: 100%;
-    height: 444px;
+    height: 23vw;
     object-fit: cover;
 }
 
 .work_slider .nav {
     position: absolute;
-    height: 444px;
+    height: 23vw;
     width: 30px;
     border: 0;
     padding: 0;
@@ -245,167 +286,70 @@ body {
     gap: 6px;
     justify-content: center;
     padding-top: 10px;
+    align-items: center;
 }
 
 .dot {
-    width: 10px;
-    height: 12px;
+    width: 0.6vw;
+    height: min-content;
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
-    background: var(--dot);
-    border: none;
+    background: #ccc;
     cursor: pointer;
+    flex-shrink: 0;
+    border: 0;
 }
 
 .dot.is_active {
-    width: 15px;
-    height: 15px;
-    background: var(--dot_active);
+    background: var(--brand);
 }
 
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2.1vw;
+  margin-bottom: 5.2vw;
+}
 .more {
     width: 18.5%;
-    transition: background .18s ease, color .18s ease;
-    display: block;
-    margin-left: auto;
-    padding: 14px 18px;
+    appearance: none;
     border: 1px solid black;
-    background: #fff;
-    font-size: 20px;
+    background: var(--btn-bg);
+    color: black;
+    font-size: 1vw;
     font-weight: 300;
+    font-family: 'Geologica', serif;
+    height: 3.1vw;
     cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease, transform 0.05s ease;
 }
 
 .more:hover {
-    background: #111;
-    color: #fff;
+    background: var(--brand);
+    color: white;
+    border-color: var(--brand);
+}
+.title-min{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-family: 'Geologica', serif;
+
 }
 
-@media (min-width: 360px) and (max-width: 767px) {
-    :root {
-        --gap_x: 16px;
-        --gap_y: 24px;
-    }
+.title-glav{
+    color: #6B6B6B;
+    text-decoration: none;
+}
 
-    .container {
-        max-width: 100%;
-        margin: 0 20px 48px;
-    }
-
-    .page_title {
-        margin: 0 0 24px;
-        font-size: 32px;
-        line-height: 1.1;
-    }
-
-    .brand_stack {
-        display: none;
-    }
-
-    .cards {
-        gap: 24px;
-    }
-
-    .row {
-        flex-direction: column;
-        gap: 16px;
-        padding-bottom: 24px;
-        border-bottom: 1px solid var(--border);
-    }
-
-    .about {
-        gap: 12px;
-        align-items: stretch;
-        flex-direction: row;
-    }
-
-    .about__avatar {
-        height: 189px;
-        flex: 0 0 120px;
-        object-fit: cover;
-    }
-
-    .about__info {
-        display: flex;
-        flex-direction: column;
-        min-width: 0;
-    }
-
-    .about__name {
-        font-size: 18px;
-        margin: 0 0 4px;
-    }
-
-    .about__roles {
-        font-size: 16px;
-        margin: 0 0 12px;
-    }
-
-    .about__cta {
-        position: relative;
-        color: transparent;
-    }
-
-    .about__cta::after {
-        content: "ПОРТФОЛИО";
-        color: var(--text);
-        position: absolute;
-        left: 14px;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    .about__cta {
-        margin-top: auto;
-        align-self: flex-start;
-        width: 85%;
-        font-size: 16px;
-        padding: 2px 12px;
-        gap: 6px;
-    }
-
-    .work {
-        width: 100%;
-    }
-
-    .work_slider {
-        overflow: hidden;
-    }
-
-    .work_slider__slide img {
-        height: 212px;
-    }
-
-    .work_slider .nav {
-        display: none;
-    }
-
-    .work_slider__dots {
-        gap: 6px;
-        padding-top: 8px;
-    }
-
-    .dot {
-        width: 10px;
-        height: 10px;
-    }
-
-    .dot.is_active {
-        width: 12px;
-        height: 12px;
-    }
-
-    .more {
-        font-family: 'Geologica', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-        width: 100%;
-        margin-left: 0;
-        font-size: 16px;
-        padding: 12px 14px;
-    }
-
-    .nav {
-        display: none;
+@media (max-width: 1400px) {
+    .brand_stack
+    {
+        top: 12.15vw;
     }
 }
+
+
 
 @media (min-width: 768px) and (max-width: 1024px) {
     :root {
@@ -414,8 +358,14 @@ body {
     }
 
     .container {
-        max-width: 100%;
-        margin: 0 20px 64px;
+        width: calc(100% - 40px);
+        margin-inline: auto;
+    }
+
+    .content
+    {
+        margin-bottom: 0;
+        padding-bottom: 0;
     }
 
     .page_title {
@@ -429,25 +379,25 @@ body {
     }
 
     .cards {
-        gap: 40px;
+        width: 100%;
     }
 
     .row {
         display: flex;
         align-items: stretch;
-        gap: 32px;
+        gap: 2.6vw;
     }
 
     .about {
         display: flex;
         align-items: flex-start;
-        column-gap: 16px;
-        row-gap: 8px;
+        column-gap: 2.6vw;  
+        width: 50%;
     }
 
     .about__avatar {
-        width: 167px;
-        height: 235px;
+        width: 50%;
+        height: 30.5vw;
         object-fit: cover;
     }
 
@@ -455,27 +405,21 @@ body {
         display: flex;
         flex-direction: column;
         min-width: 0;
+        height: 30.5vw;
     }
 
     .about__name {
-        font-size: 22px;
-        margin: 0 0 6px;
+        font-size: 2.9vw;
+        margin: 0 0 1.3vw;
     }
 
     .about__roles {
-        font-size: 18px;
-        margin: 0 0 12px;
+        font-size: 2.3vw;
     }
 
     .about__cta {
-        height: 20px;
-        width: 90%;
-        gap: 0;
-        position: relative;
-        color: transparent;
-        margin-top: 94px;
-        font-size: 16px;
-        align-self: flex-start;
+        height: 5.2vw;
+        font-size: 1.85vw;
     }
 
     .about__cta::after {
@@ -490,12 +434,13 @@ body {
         pointer-events: none;
     }
 
-    .work {
-        width: 100%;
+    .work
+    {
+        width: 50%;
     }
 
     .work_slider__slide img {
-        height: 235px;
+        height: 30.5vw;
         object-fit: cover;
     }
 
@@ -509,6 +454,137 @@ body {
     }
 
     .dot {
+        width: 1.6vw;
+    }
+
+    .dot.is_active {
+        background: var(--brand);
+        aspect-ratio: 1 / 1;
+    }
+
+    .more {
+        width: calc(50% - (var(--gap) / 2));
+        appearance: none;
+        border: 1px solid var(--text);
+        background: #fff;
+        font-weight: 300;
+        font-family: Geologica, Arial, sans-serif;
+        cursor: pointer;
+        transition: all .18s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-main);
+        text-transform: uppercase;
+        grid-column: 2 / 2;
+        height: 4vw;
+        font-size: 1.3vw;
+    }
+    .actions
+    {
+        margin-top: 3.1vw;
+    }
+}
+@media (max-width: 767px) {
+    :root {
+        --gap_x: 16px;
+        --gap_y: 24px;
+    }
+
+    .container {
+        width: 90%;
+    }
+
+    .content
+    {
+        margin-bottom: 0;
+        padding: 0;
+    }
+
+    .page_title {
+        margin: 0 0 24px;
+        font-size: 32px;
+        line-height: 1.1;
+    }
+
+    .brand_stack {
+        display: none;
+    }
+
+    .cards {
+        gap: 24px;
+        width: 100%;
+    }
+
+    .row {
+        flex-direction: column;
+        gap: 5.6vw;
+        padding-bottom: 24px;
+    }
+
+    .about {
+        gap: 5.6vw;
+        align-items: stretch;
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .about__avatar {
+        height: 55vw;
+        width: 50%;
+        object-fit: cover;
+    }
+
+    .about__info {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        height: 55vw;
+    }
+
+    .about__name {
+        font-size: 5vw;
+        margin: 0 0 1.1vw;
+    }
+
+    .about__roles {
+        font-size: 4.5vw;
+        margin: 0;
+    }
+
+    .about__cta {
+        position: relative;
+        margin-top: auto;
+        align-self: flex-start;
+        width: 100%;
+        font-size: 4vw;
+        padding: 0 6vw;
+        height: 11vw;
+        gap: 2vw;
+    }
+
+    .work {
+        width: 100%;
+    }
+
+    .work_slider {
+        overflow: hidden;
+    }
+
+    .work_slider__slide img {
+        height: 61vw;
+    }
+
+    .work_slider .nav {
+        display: none;
+    }
+
+    .work_slider__dots {
+        gap: 6px;
+        padding-top: 8px;
+    }
+
+    .dot {
         width: 10px;
         height: 10px;
     }
@@ -519,10 +595,16 @@ body {
     }
 
     .more {
-        width: 320px;
-        margin: 8px auto 0;
-        font-size: 18px;
-        padding: 12px 16px;
-        display: block;
+        width: 100%;
+        height: 11vw;
+        font-size: 3.5vw;
+    }
+
+    .actions {
+        margin: 5.5vw 0 16.7vw;
+    }
+
+    .nav {
+        display: none;
     }
 }

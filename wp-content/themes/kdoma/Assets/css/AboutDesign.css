@@ -1,19 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@200;300;400;500;600&display=swap');
 
 .pd__container{
-    max-width: 1720px;
+    width:90%;
     margin: 0 auto;
-
     box-sizing: border-box;
 }
 
-:root{
-    --gap: 28px;         
-    --caption-mt: 8px;    
-    --text: #0d0d0d;
-    --border: #e5e5e5;
-}
 
 *{ box-sizing: border-box; }
 html,body{ height:100%; }
@@ -24,83 +16,81 @@ body{
     background:#fff;
 }
 
-/* Заголовок */
+
+
+
+
 .pd__title{
     margin: 0 0 50px;
     font-size: 70px;
     font-weight: 200;
-
 }
 
-/* Grid: 2 равные колонки, одинаковые зазоры */
 .pd_grid{
     display:grid;
+    margin: 0 auto;
     grid-template-columns: 1fr 1fr;
-    gap: 28px;
+    gap: var(--gap);
     grid-template-areas:
     "c1 c2"
     "c3 c4"
-    "c5 c7";   
+    "c5 c7";
 }
 .pd_left_pair{
     display:grid;
-    grid-template-columns: 1fr 1fr; 
-    gap: 28px;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
 }
 
-/* Карточка */
 .pd_card{ display: block; }
 .pd_card__media{
     display:block;
-    width:100%;
-
+    width: fit-content;
     background:#fff;
 }
 .pd_card__media img{
     display:block;
-
-    height:auto;       
-    object-fit: cover; 
+    height: 32vw;
+    object-fit: cover;
 }
 .pd_card__caption{
     margin: var(--caption-mt) 0 0;
-    font-size: 24px;
+    font-size: 1.2vw;
     font-weight: 300;
-
 }
 .pd_card__floor__dup{ display:none; }
-/* Кнопка снизу по центру */
 .pd__more{
     display:flex;
     justify-content:end;
-    margin: 28px 0 40px;
+    margin-top: 2.1vw;
+    margin-bottom: 5.2vw;
 }
 
 .pd_btn{
-    width: 407px;
-    height: 60px;
-    border: 1px solid #111;
-    background:#fff;
+    width: calc(33% - (var(--gap) / 2));
+    height: 3.5vw;
+    font-size: 1.1vw;
     font-weight: 300;
+    cursor: pointer;
+    border: 1px solid #000;
+    background: #fff;
+    transition: all .2s ease;
     font-family: Geologica, Arial, sans-serif;
-    font-size:20px;
-    cursor:pointer;
-    transition: .2s ease;
+    text-transform: uppercase;
+    color: var(--text-main);
+
 }
 .pd_btn:hover{ background:#111; color:#fff; }
 
-@media (min-width: 360px) and (max-width: 767px) {
-
-
+@media (max-width: 767px) {
     .pd__container {
-        width: min(100%, 767px);
-        max-width: 100%;
-        margin: 0 auto;
-        padding: 0 20px; 
-        box-sizing: border-box;
+        width: 90%;
     }
-
-    /* Показываем 4 карточки, используем дубликат Floor в паре */
+    #main-content
+    {
+        padding-top: 0;
+        padding-bottom: 3vw;
+    }
     .pd_card__kitchen,
     .pd_card__aledo,
     .pd_card__relax_2 {
@@ -115,7 +105,6 @@ body{
         display: block !important;
     }
 
-    /* Колонная компоновка и порядок: 1) interior, 2) пара, 3) green-bay */
     .pd_grid {
         display: flex;
         flex-direction: column;
@@ -134,16 +123,15 @@ body{
         order: 3;
     }
 
-    /* Широкие карточки: всегда на всю ширину контейнера */
     .pd_card__interior .pd_card__media img,
     .pd_card__green_bay .pd_card__media img {
         width: 100%;
-        height: 213px;
+        height: 65vw;
         object-fit: cover;
         display: block;
     }
 
-    /* Пара малых — резиновая строка */
+
     .pd_left_pair {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -151,20 +139,13 @@ body{
         width: 100%;
     }
 
-    .pd_left_pair .pd_card__floor__dup,
-    .pd_left_pair .pd_card__relax_1 {
-        min-width: 0;
-    }
-
-    /* Высота малых адаптивная: от 150px на узких до 200px ближе к 767px */
     .pd_left_pair .pd_card__floor__dup .pd_card__media img,
     .pd_left_pair .pd_card__relax_1 .pd_card__media img {
         width: 100%;
-        height: 224px;
+        height: 64vw;
         object-fit: cover;
         display: block;
     }
-
 
     .pd__title {
         margin: 0 0 12px;
@@ -174,48 +155,37 @@ body{
 
     .pd_card__caption {
         margin: 8px 0 0;
-        font-size: 16px;
+        font-size: 4vw;
         line-height: 1.3;
     }
 
     .pd__more {
-        margin: 16px 0 20px;
+        margin: 16px 0 28px;
     }
 
     .pd_btn {
         width: 100%;
-        height: 40px;
-        text-transform: uppercase;
-        font-size: 16px;
-        border: 1px solid #111;
-        background: #fff;
+        height: 11vw;
+        font-size: 3.5vw;
     }
+
 }
 
-
 @media (min-width:768px) and (max-width:1024px){
+    .pd_card__floor__dup{ display:none !important; }
 
-    /* Скрываем мобильный дубликат Floor на планшете */
-    .pd_card__floor__dup{ display:none !important; } /* [OK] */
-
-    /* Контейнер тянется, добавим боковые поля */
     .pd__container{
-        width: min(100%, 1024px);
-        margin: 0 auto;
-        padding: 0 16px;
-        box-sizing: border-box;
+        width: calc(100% - 40px);
+        margin-inline: auto;
     }
 
 
-    :root{ --gap: clamp(16px, 2vw, 24px); }
-
-    /* Большие карточки: ширина 100% родителя, высота плавно растёт вокруг 241px */
     .pd_card__interior .pd_card__media img,
     .pd_card__kitchen  .pd_card__media img,
     .pd_card__green_bay .pd_card__media img,
     .pd_card__aledo   .pd_card__media img{
         width: 100%;
-        height: 241px;   
+        height: 33.5vw;
         object-fit: cover;
         object-position: center;
         display: block;
@@ -223,7 +193,6 @@ body{
     .pd_card__floor_text{
         width: 50%;
     }
-    /* Малые карточки: пополам внутри пары, высота тоже резиновая */
     .pd_left_pair{
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -231,32 +200,48 @@ body{
         width: 100%;
     }
     .pd_card__media img{
-        width: 47.5%;
-        height: 241px;
+        width: 100%;
+        height: 31.5vw;
     }
     .pd_card__relax_1 .pd_card__media img,
     .pd_card__relax_2 .pd_card__media img{
         width: 100%;
-        height: 241px; 
+        height: 31.5vw;
         object-fit: cover;
         object-position: center;
         display: block;
     }
 
-    /* Подписи остаются компактными */
     .pd_card__caption{
         margin-top: 8px;
-        font-size: 18px;
+        font-size: 1.8vw;
         font-weight: 300;
     }
     .pd__title{
         font-size: 50px;
         font-weight: 200;
-
     }
     .pd_btn{
-        width: 354px;
-        height: 45px;
-        font-size: 16px;
+        width: calc(50% - (var(--gap) / 2));
+        appearance: none;
+        border: 1px solid var(--text);
+        background: #fff;
+        font-weight: 300;
+        font-family: Geologica, Arial, sans-serif;
+        cursor: pointer;
+        transition: all .18s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-main);
+        text-transform: uppercase;
+        grid-column: 2 / 2;
+        height: 4vw;
+        font-size: 1.3vw;
+    }
+}
+@media (max-width: 460px) {
+    .pd__container {
+        width: 100%;
     }
 }
