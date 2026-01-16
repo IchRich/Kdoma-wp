@@ -30,11 +30,9 @@ Template Name: Home
     <section class="cards" aria-label="Разделы сайта">
         <div class="cards_row">
             <article class="card card_tall card_designers">
-                <a href="Designers.html">
-                    <div class="card_bg" aria-hidden="true"></div>
-                    <h2>ДИЗАЙНЕРЫ</h2>
-                    <img src="<?php bloginfo('template_url')?>/Assets/image/Pointer.png" alt="перейти" class="card_arrow" loading="lazy">
-                </a>
+                <div class="card_bg" aria-hidden="true"></div>
+                <h2>ДИЗАЙНЕРЫ</h2>
+                <img src="<?php bloginfo('template_url')?>/Assets/image/Pointer.png" alt="перейти" class="card_arrow" loading="lazy">
             </article>
 
             <article class="card card_wide card_interiors">
@@ -47,11 +45,9 @@ Template Name: Home
 
             <div class="card_col">
                 <article class="card card_small card_companies">
-                    <a href="Company.html">
-                        <div class="card_bg" aria-hidden="true"></div>
-                        <h2>КОМПАНИИ</h2>
-                        <img src="<?php bloginfo('template_url')?>/Assets/image/Pointer.png" alt="перейти" class="card_arrow" loading="lazy">
-                    </a>
+                    <div class="card_bg" aria-hidden="true"></div>
+                    <h2>КОМПАНИИ</h2>
+                    <img src="<?php bloginfo('template_url')?>/Assets/image/Pointer.png" alt="перейти" class="card_arrow" loading="lazy">
                 </article>
 
                 <article class="card card_small card_banner">
@@ -99,7 +95,7 @@ wp_reset_postdata(); // сброс поста
 ?>       
         </div>
         <div class="about_design_footer">
-            <a href="AboutDesign.html" class="about_design_all">
+            <a href="#" class="about_design_all">
                 СМОТРЕТЬ ВСЕ <img src="<?php bloginfo('template_url')?>/Assets/image/SecondPointer.png" alt="перейти" class="design_arrow" loading="lazy">
             </a>
         </div>
@@ -157,7 +153,7 @@ wp_reset_postdata(); // сброс поста
                     <a href="#" class="journal_btn">
                         <img src="<?php bloginfo('template_url')?>/Assets/image/Document.png" alt="перейти" class="icon" loading="lazy"> СКАЧАТЬ АКТУАЛЬНЫЙ ЖУРНАЛ
                     </a>
-                    <a href="Archive.html" class="journal_btn_s journal_btn__border">
+                    <a href="#" class="journal_btn_s journal_btn__border">
                         СМОТРЕТЬ АРХИВ <img src="<?php bloginfo('template_url')?>/Assets/image/SecondPointer.png" alt="перейти" class="arrow" loading="lazy">
                     </a>
                 </div>
@@ -168,10 +164,9 @@ wp_reset_postdata(); // сброс поста
     </section>
 
     <!-- События -->
-    <div class="events-section-wrapper">
-        <section class="events_block" aria-labelledby="events_title">
-            <h2 id="events_title">События</h2>
-            <div class="events_row">
+    <section class="events_block" aria-labelledby="events_title">
+        <h2 id="events_title">События</h2>
+        <div class="events_row">
 
             <?php
                 global $post;
@@ -188,7 +183,7 @@ wp_reset_postdata(); // сброс поста
                         setup_postdata( $post );
                         ?>
                         
-                            <article class="event_card event_card__<?=get_the_tags($post)[1]->name?>">
+                            <article class="event_card event_card__<?=get_the_tags($post)[0]->name?>">
                             <img src="<?=the_post_thumbnail_url()?>" alt="Событие 1" loading="lazy">
                             <div class="event_caption">
                                 <?=the_title()?><br>
@@ -224,14 +219,12 @@ wp_reset_postdata(); // сброс поста
             ?>
         </div>
 
-            <div class="events_footer">
-                <a href="Events.html" class="events_btn">
-                    СМОТРЕТЬ ВСЕ <img src="<?php bloginfo('template_url')?>/Assets/image/SecondPointer.png" alt="перейти" class="events_arrow" loading="lazy">
-                </a>
-            </div>
-        </section>
-
-    </div>
+        <div class="events_footer">
+            <a href="#" class="events_btn">
+                СМОТРЕТЬ ВСЕ <img src="<?php bloginfo('template_url')?>/Assets/image/SecondPointer.png" alt="перейти" class="events_arrow" loading="lazy">
+            </a>
+        </div>
+    </section>
 
     <!-- О редакции -->
     <section class="about_editorial" aria-labelledby="about_editorial_title">
@@ -247,16 +240,14 @@ wp_reset_postdata(); // сброс поста
             <div class="about_editorial__col">
                 <ul class="about_editorial__list">
                     <li>Каталог топовых архитекторов и дизайнеров</li>
-                    <li>Реальные кейсы и тренды интерьерных решений <br/></li>
-                    <a href="#" class="readmore">Читать далее</a>   
+                    <li>Реальные кейсы и тренды интерьерных решений <br/> <a href="#" class="readmore">Читать далее</a></li>
                 </ul>
             </div>
 
-            <hr>
-
             <div class="about_editorial__col">
-                <div class="about_editorial__title">Размещение рекламы на&nbsp;сайте </div>
+                <div class="about_editorial__title">Желаете разместить рекламу на нашем сайте?</div>
                 <div class="about_editorial__text">
+                    Свяжитесь с нашим менеджером по рекламе:
                     <a class="mail" href="mailto:project@kdoma.ru">project@kdoma.ru</a>
                 </div>
                 <a href="#" class="about_editorial__btn">
@@ -265,11 +256,11 @@ wp_reset_postdata(); // сброс поста
             </div>
 
             <div class="about_editorial__col">
-                <div class="about_editorial__title">Публикация интерьера на сайте и в журнале</div>
+                <div class="about_editorial__title">Хотите опубликовать реализованный проект?</div>
                 <div class="about_editorial__text">
                     Заполните заявку перейдя по данной ссылке
                 </div>
-                <a href="PublishProject.html" class="about_editorial__btn__red ">
+                <a href="#" class="about_editorial__btn__red ">
                     РАЗМЕСТИТЬ ИНТЕРЬЕР <img src="<?php bloginfo('template_url')?>/Assets/image/WhitePointer.png" alt="перейти" class="about_editorial__arrow" loading="lazy">
                 </a>
             </div>

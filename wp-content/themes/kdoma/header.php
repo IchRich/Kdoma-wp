@@ -9,18 +9,15 @@
                class="burger_btn"
                aria-label="Открыть меню"
                aria-controls="mobile_drawer"
-               aria-expanded="false">
-            <span></span>
-        </label>
+               aria-expanded="false"></label>
 
         <aside id="mobile_drawer" class="mobile_drawer" role="dialog" aria-modal="true" aria-label="Меню">
             <div class="mobile_drawer__head">
-                <img src="<?php bloginfo('template_url')?>/Assets/image/SearchIcon.png" alt="">
-                <!-- <form class="mobile_search" role="search" action="/search">
-                    <input type="search" name="q" placeholder="Поиск" aria-label="Поиск">
-                </form> -->
                 <button type="button" class="mobile_drawer__close" aria-label="Закрыть меню"
                         onclick="document.getElementById('nav-toggle').checked=false"></button>
+                <form class="mobile_search" role="search" action="/search">
+                    <input type="search" name="q" placeholder="Поиск" aria-label="Поиск">
+                </form>
             </div>
 
             <nav class="mobile_nav" aria-label="Основные разделы">
@@ -32,12 +29,12 @@
                     <li><a href="Events.html">События</a></li>
                     <li><a href="AboutEdit.html">О редакции</a></li>
                     <li><a class="accent" href="DesignSchool.html">Школа дизайна</a></li>
-                    <li><a class="accent" href="DesignWeek.html">Неделя дизайна</a></li>
-                    <li><a class="accent" href="Premia.html">Премия</a></li>
+                    <li><a class="accent" href="#">Неделя дизайна</a></li>
+                    <li><a class="accent" href="#">Премия</a></li>
                 </ul>
             </nav>
 
-            <!-- <section class="mobile_social" aria-label="Наши соцсети">
+            <section class="mobile_social" aria-label="Наши соцсети">
                 <h3>Наши соцсети</h3>
                 <ul>
                     <li>
@@ -49,7 +46,7 @@
                         <a href="#">Telegram</a>
                     </li>
                 </ul>
-            </section> -->
+            </section>
         </aside>
 
         <div class="mobile_overlay"></div>
@@ -61,10 +58,10 @@
                 <li><a href="Company.html">КОМПАНИИ</a></li>
                 <li><a href="AboutDesign.html">ПРО ДИЗАЙН</a></li>
                 <li><a href="Events.html">СОБЫТИЯ</a></li>
-                <li><a href="AboutEdit.html">О РЕДАКЦИИ</a></li>
+                <li><a href="AboutEdit.html" class="accent">О РЕДАКЦИИ</a></li>
                 <li><a class="accent" href="DesignSchool.html">ШКОЛА ДИЗАЙНА</a></li>
-                <li><a class="accent" href="DesignWeek.html">НЕДЕЛЯ ДИЗАЙНА</a></li>
-                <li><a class="accent" href="Premia.html">ПРЕМИЯ</a></li>
+                <li><a class="accent" href="#">НЕДЕЛЯ ДИЗАЙНА</a></li>
+                <li><a class="accent" href="#">ПРЕМИЯ</a></li>
             </ul>
         </nav>
 

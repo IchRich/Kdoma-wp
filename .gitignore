@@ -16,6 +16,9 @@
 /readme.html
 /wp-*.php
 /xmlrpc.php
+/Kdoma/Assets/image
+/wp-content/themes/kdoma/Assets/image
+
 
 # Configuration
 wp-config.php
