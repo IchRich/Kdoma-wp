@@ -11,6 +11,9 @@ add_action( 'wp_enqueue_scripts', function () {
 	  wp_enqueue_style( 'style-events', get_template_directory_uri() . '/Assets/css/Events.css' );
     }
     wp_enqueue_style( 'style-header', get_template_directory_uri() . '/Assets/css/Header.css' );
+    if(is_single()){
+    wp_enqueue_style( 'style-eventsm', get_template_directory_uri() . '/Assets/css/Eventsm.css' );    
+    }
 });
 
 /**

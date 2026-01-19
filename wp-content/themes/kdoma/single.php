@@ -1,48 +1,82 @@
 <?php get_header(); ?>
 
-<?php the_post(); ?>
+<main>
+  <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-<main class="single-post">
-  <div class="container">
-
-    <nav class="breadcrumbs" aria-label="breadcrumb">
-      <a href="<?php echo esc_url(home_url('/')); ?>">Главная</a>
-      <span> / </span>
-      <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>">Новости</a>
-      <span> / </span>
-      <span><?php the_title(); ?></span>
-    </nav>
-
-    <article class="single-post__inner">
-      <h1 class="single-post__title"><?php the_title(); ?></h1>
-
-      <div class="single-post__meta">
-        <time datetime="<?php echo esc_attr(get_the_date('c')); ?>">
-          <?php echo esc_html(get_the_date('d.m.Y')); ?>
-        </time>
-      </div>
-
-      <?php if (has_post_thumbnail()) : ?>
-        <div class="single-post__thumb">
-          <?php the_post_thumbnail('large', [
-            'loading' => 'lazy',
-            'alt' => get_the_title()
-          ]); ?>
+    <section class="events">
+      <div class="container breadcrumbs">
+        <div class="title-min">
+          <a href="<?php echo esc_url(home_url('/')); ?>" class="title-glav">Главная</a>
+          <a> / </a>
+          <a href="<?php echo esc_url(home_url('/Events')); ?>" class="title-glav">События</a>
+          <a> / </a>
+          <a><?php the_title(); ?></a>
         </div>
-      <?php endif; ?>
-
-      <div class="single-post__content">
-        <?php the_content(); ?>
       </div>
 
-      <div class="single-post__back">
-        <a href="<?php echo esc_url(get_permalink()); ?>">
-          ← Назад к событиям
-        </a>
-      </div>
-    </article>
+      <div class="container">
+        <h1 class="events__title"><?php the_title(); ?></h1>
 
-  </div>
+        <?php
+          $images = [];
+          $max_images = 10;
+
+          for ($i = 1; $i <= $max_images; $i++) {
+            $img = get_field("event_image_$i");
+            if (!empty($img) && is_array($img)) {
+              $images[] = $img;
+            }
+          }
+ 
+          if (empty($images)) {
+            $single = get_field('event_image');
+            if (!empty($single) && is_array($single)) {
+              $images[] = $single;
+            }
+          }
+        ?>
+
+        <?php if (!empty($images)) : ?>
+          <div class="events_img">
+            <?php foreach ($images as $index => $img) : ?>
+              <?php
+                $pos = $index + 1;
+
+                
+                $is_big = ($pos === 5 || $pos === 6);
+
+                $wrap_class = $is_big ? 'event_img' : 'event_img_mini';
+                $src = $img['sizes']['large'] ?? $img['url'];
+                $alt = !empty($img['alt']) ? $img['alt'] : get_the_title();
+              ?>
+
+              <div class="<?php echo esc_attr($wrap_class); ?>">
+                <img
+                  src="<?php echo esc_url($src); ?>"
+                  alt="<?php echo esc_attr($alt); ?>"
+                  loading="lazy"
+                >
+              </div>
+              
+            <?php endforeach; ?>
+          </div>
+        <?php endif; ?>
+
+        <div class="event__content">
+          <?php the_content(); ?>
+        </div>
+      <div class="actions">
+          <button class="btn">
+            Показать ещё
+          </button>
+      </div>
+      </div>
+  
+  
+    </section>
+
+  <?php endwhile; endif; ?>
+      
 </main>
 
 <?php get_footer(); ?>
