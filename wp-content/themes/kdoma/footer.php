@@ -44,7 +44,7 @@
         <nav class="site_footer__col footer_sections footer_sections_extra" aria-labelledby="footer_sections_2">
 
             <ul class="site_footer__list_second">
-                <li><a class="site_footer__link" href="<?php echo get_page_link(70); ?>">Архив номеров</a></li>
+                <li><a class="site_footer__link" href="<?php echo get_page_link(65); ?>">Архив номеров</a></li>
                 <li><a class="site_footer__link" href="AboutEdit.html">О редакции</a></li>
                 <li class="red_marker"><a class="site_footer__link site_footer__link_accent" href="DesignSchool.html">Школа дизайна</a></li>
                 <li class="red_marker"><a class="site_footer__link site_footer__link_accent" href="/week">Неделя дизайна</a></li>

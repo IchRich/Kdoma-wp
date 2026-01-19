@@ -128,17 +128,27 @@ if( $myposts ){
 	foreach( $myposts as $post ){
 		setup_postdata( $post );
 		?>
-                     <li class="card">
-                <a class="card__link" href="<?php the_permalink(); ?>">
-                    <div class="card__cover">
-                            <?php the_post_thumbnail(); ?>
-                    </div>
-                    <div class="card__meta">
-                        <h3 class="card__title"><?php the_title(); ?></h3>
-                        <p class="card__year"><?php the_content(); ?></p>
-                    </div>
-                </a>
-            </li>
+<li class="card">
+    <?php
+    // Получаем URL PDF через ACF
+    $pdf_url = get_field('magazine_pdf');
+    
+    // Если PDF есть - используем его, если нет - обычная ссылка на запись
+    $link_url = $pdf_url ?: get_permalink();
+    $link_attrs = $pdf_url ? 'download' : '';
+    ?>
+    
+    <a class="card__link" href="<?php echo esc_url($link_url); ?>" <?php echo $link_attrs; ?>>
+        <div class="card__cover">
+            <?php the_post_thumbnail(); ?>
+        </div>
+        <div class="card__meta">
+            <h3 class="card__title"><?php the_title(); ?></h3>
+            <p class="card__year"><?php the_content(); ?></p>
+        </div>
+    </a>
+</li>
+
 		<?php
 	}
 }
