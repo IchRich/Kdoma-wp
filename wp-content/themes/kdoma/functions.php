@@ -1,54 +1,58 @@
 <?php
 // добавление стилей
-add_action( 'wp_enqueue_scripts', function () {
-	wp_enqueue_style( 'style-home', get_template_directory_uri() . '/Assets/css/Home.css' );
-    wp_enqueue_style( 'style-header', get_template_directory_uri() . '/Assets/css/Header.css' );
-    wp_enqueue_style( 'style-archive', get_template_directory_uri() . '/Assets/css/Archive.css' );
+add_action('wp_enqueue_scripts', function () {
+	wp_enqueue_style('style-home', get_template_directory_uri() . '/Assets/css/Home.css');
+	wp_enqueue_style('style-header', get_template_directory_uri() . '/Assets/css/Header.css');
+	wp_enqueue_style('style-archive', get_template_directory_uri() . '/Assets/css/Archive.css');
+	wp_enqueue_style('style-designers', get_template_directory_uri() . '/Assets/css/Designers.css');
+
+	wp_enqueue_script('slider', get_template_directory_uri() . '/Assets/js/slider.js');
 });
 
 
 
-/* Тут в дальнейшем будет подключение фич для вордпресса */ 
+/* Тут в дальнейшем будет подключение фич для вордпресса */
 add_theme_support("post-thumbnails");
 add_theme_support('custom-logo');
 
 
 
-add_filter( 'upload_mimes', 'svg_upload_allow' );
+add_filter('upload_mimes', 'svg_upload_allow');
 
 # Добавляет SVG в список разрешенных для загрузки файлов.
-function svg_upload_allow( $mimes ) {
-	$mimes['svg']  = 'image/svg+xml';
+function svg_upload_allow($mimes)
+{
+	$mimes['svg'] = 'image/svg+xml';
 
 	return $mimes;
 }
 
-add_filter( 'wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 5 );
+add_filter('wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 5);
 
 # Исправление MIME типа для SVG файлов.
-function fix_svg_mime_type( $data, $file, $filename, $mimes, $real_mime = '' ){
+function fix_svg_mime_type($data, $file, $filename, $mimes, $real_mime = '')
+{
 
 	// WP 5.1 +
-	if( version_compare( $GLOBALS['wp_version'], '5.1.0', '>=' ) ){
-		$dosvg = in_array( $real_mime, [ 'image/svg', 'image/svg+xml' ] );
-	}
-	else {
-		$dosvg = ( '.svg' === strtolower( substr( $filename, -4 ) ) );
+	if (version_compare($GLOBALS['wp_version'], '5.1.0', '>=')) {
+		$dosvg = in_array($real_mime, ['image/svg', 'image/svg+xml']);
+	} else {
+		$dosvg = ('.svg' === strtolower(substr($filename, -4)));
 	}
 
 	// mime тип был обнулен, поправим его
 	// а также проверим право пользователя
-	if( $dosvg ){
+	if ($dosvg) {
 
 		// разрешим
-		if( current_user_can('manage_options') ){
+		if (current_user_can('manage_options')) {
 
-			$data['ext']  = 'svg';
+			$data['ext'] = 'svg';
 			$data['type'] = 'image/svg+xml';
 		}
 		// запретим
 		else {
-			$data['ext']  = false;
+			$data['ext'] = false;
 			$data['type'] = false;
 		}
 
@@ -56,3 +60,5 @@ function fix_svg_mime_type( $data, $file, $filename, $mimes, $real_mime = '' ){
 
 	return $data;
 }
+
+

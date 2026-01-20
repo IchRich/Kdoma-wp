@@ -2,19 +2,16 @@
 <header class="site_header">
     <div class="header_inner">
         <a class="logo" href="index.php" aria-label="Home">
-            <img src="<?php bloginfo('template_url')?>/Assets/image/LogoKD.svg" alt="Logo">
+            <img src="<?php bloginfo('template_url') ?>/Assets/image/LogoKD.svg" alt="Logo">
         </a>
         <input type="checkbox" id="nav-toggle" class="nav_toggle" aria-hidden="true">
-        <label for="nav-toggle"
-               class="burger_btn"
-               aria-label="Открыть меню"
-               aria-controls="mobile_drawer"
-               aria-expanded="false"></label>
+        <label for="nav-toggle" class="burger_btn" aria-label="Открыть меню" aria-controls="mobile_drawer"
+            aria-expanded="false"></label>
 
         <aside id="mobile_drawer" class="mobile_drawer" role="dialog" aria-modal="true" aria-label="Меню">
             <div class="mobile_drawer__head">
                 <button type="button" class="mobile_drawer__close" aria-label="Закрыть меню"
-                        onclick="document.getElementById('nav-toggle').checked=false"></button>
+                    onclick="document.getElementById('nav-toggle').checked=false"></button>
                 <form class="mobile_search" role="search" action="/search">
                     <input type="search" name="q" placeholder="Поиск" aria-label="Поиск">
                 </form>
@@ -38,11 +35,11 @@
                 <h3>Наши соцсети</h3>
                 <ul>
                     <li>
-                        <img src="<?php bloginfo('template_url')?>/Assets/image/vk.svg" alt="VK">
+                        <img src="<?php bloginfo('template_url') ?>/Assets/image/vk.svg" alt="VK">
                         <a href="#">ВКонтакте</a>
                     </li>
                     <li>
-                        <img src="<?php bloginfo('template_url')?>/Assets/image/TelegramLogo.svg">
+                        <img src="<?php bloginfo('template_url') ?>/Assets/image/TelegramLogo.svg">
                         <a href="#">Telegram</a>
                     </li>
                 </ul>
@@ -54,7 +51,7 @@
         <nav class="main_nav" aria-label="Главное меню">
             <ul>
                 <li><a href="Interior.html">ИНТЕРЬЕРЫ</a></li>
-                <li><a href="Designers.html">ДИЗАЙНЕРЫ</a></li>
+                <li><a href="<?php echo get_page_link(84); ?>">ДИЗАЙНЕРЫ</a></li>
                 <li><a href="Company.html">КОМПАНИИ</a></li>
                 <li><a href="AboutDesign.html">ПРО ДИЗАЙН</a></li>
                 <li><a href="Events.html">СОБЫТИЯ</a></li>
@@ -67,15 +64,15 @@
 
         <div class="utils">
             <a class="icon_btn" href="#" aria-label="VK">
-                <img src="<?php bloginfo('template_url')?>/Assets/image/vk.svg" alt="VK">
+                <img src="<?php bloginfo('template_url') ?>/Assets/image/vk.svg" alt="VK">
             </a>
             <a class="icon_btn" href="#" aria-label="Telegram">
-                <img src="<?php bloginfo('template_url')?>/Assets/image/TelegramLogo.svg" alt="Telegram">
+                <img src="<?php bloginfo('template_url') ?>/Assets/image/TelegramLogo.svg" alt="Telegram">
             </a>
             <form class="search" role="search">
                 <input type="search" placeholder="Поиск" aria-label="Поиск" />
                 <button type="submit" aria-label="Найти">
-                    <img src="<?php bloginfo('template_url')?>/Assets/image/SearchIcon.png" alt="<UNK>">
+                    <img src="<?php bloginfo('template_url') ?>/Assets/image/SearchIcon.png" alt="<UNK>">
                 </button>
             </form>
         </div>
