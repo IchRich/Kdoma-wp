@@ -11,11 +11,22 @@ add_action( 'wp_enqueue_scripts', function () {
 	  wp_enqueue_style( 'style-events', get_template_directory_uri() . '/Assets/css/Events.css' );
     }
     wp_enqueue_style( 'style-header', get_template_directory_uri() . '/Assets/css/Header.css' );
-    if(is_single()){
+    if(is_singular('eventsm')){
     wp_enqueue_style( 'style-eventsm', get_template_directory_uri() . '/Assets/css/Eventsm.css' );    
     }
 });
 
+
+add_action('init', function () {
+    register_post_type('eventsm', [
+        'label' => 'События',
+        'public' => true,
+        'menu_icon' => 'dashicons-media-document',
+        'supports' => ['title'],
+        'has_archive' => true,
+        'show_in_rest' => false
+    ]);
+});
 /**
  * Заполняет поле для атрибута alt на основе заголовка изображения при его вставки в контент поста.
  *

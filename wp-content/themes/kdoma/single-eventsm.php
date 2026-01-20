@@ -1,6 +1,7 @@
 <?php get_header(); ?>
 
 <main>
+  
   <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
     <section class="events">
@@ -12,10 +13,11 @@
           <a> / </a>
           <a><?php the_title(); ?></a>
         </div>
+         <h1 class="title"><?php the_title();?></h1>
       </div>
 
       <div class="container">
-        <h1 class="events__title"><?php the_title(); ?></h1>
+        
 
         <?php
           $images = [];
