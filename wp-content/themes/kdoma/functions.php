@@ -5,8 +5,15 @@ add_action('wp_enqueue_scripts', function () {
 	wp_enqueue_style('style-header', get_template_directory_uri() . '/Assets/css/Header.css');
 	wp_enqueue_style('style-archive', get_template_directory_uri() . '/Assets/css/Archive.css');
 	wp_enqueue_style('style-designers', get_template_directory_uri() . '/Assets/css/Designers.css');
+	wp_enqueue_style('style-designer-page', get_template_directory_uri() . '/Assets/css/DesignersPage.css');
 
 	wp_enqueue_script('slider', get_template_directory_uri() . '/Assets/js/slider.js');
+
+	if ( is_singular('article') ) {
+    wp_enqueue_style( 'style-events', get_template_directory_uri() . '/Assets/css/Interiorm.css' );
+      wp_enqueue_script('script-slider',get_template_directory_uri() . '/Assets/js/slider.js',array(), null,true);
+      wp_enqueue_script('script-brand-float',get_template_directory_uri() . '/Assets/js/brand-float.js',array(), null,true);
+    }
 });
 
 
@@ -62,3 +69,36 @@ function fix_svg_mime_type($data, $file, $filename, $mimes, $real_mime = '')
 }
 
 
+// Регистрируем тип записи "Дизайнеры"
+add_action('init', 'register_designer_post_type');
+function register_designer_post_type() {
+    register_post_type('designer', [
+        'label' => 'Дизайнеры',
+        'public' => true,
+        'menu_icon' => 'dashicons-admin-users',
+        'supports' => ['title', 'editor', 'thumbnail'],
+        'has_archive' => true,
+        'show_in_rest' => true, // Для работы с Gutenberg
+        'labels' => [
+            'singular_name' => 'Дизайнер',
+            'add_new_item' => 'Добавить нового дизайнера',
+        ]
+    ]);
+}
+
+// Регистрируем тип записи "Проекты"
+add_action('init', 'register_project_post_type');
+function register_project_post_type() {
+    register_post_type('project', [
+        'label' => 'Проекты',
+        'public' => true,
+        'menu_icon' => 'dashicons-portfolio',
+        'supports' => ['title', 'editor', 'thumbnail'],
+        'has_archive' => true,
+        'show_in_rest' => true,
+        'labels' => [
+            'singular_name' => 'Проект',
+            'add_new_item' => 'Добавить новый проект',
+        ]
+    ]);
+}
