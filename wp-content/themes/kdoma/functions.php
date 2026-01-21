@@ -10,6 +10,14 @@ add_action( 'wp_enqueue_scripts', function () {
      if(is_page_template('Events.php')) {
 	  wp_enqueue_style( 'style-events', get_template_directory_uri() . '/Assets/css/Events.css' );
     }
+
+    if ( is_singular('article') ) {
+	  wp_enqueue_style( 'style-events', get_template_directory_uri() . '/Assets/css/Interiorm.css' );
+      wp_enqueue_script('script-slider',get_template_directory_uri() . '/Assets/js/slider.js',array(), null,true);
+      wp_enqueue_script('script-brand-float',get_template_directory_uri() . '/Assets/js/brand-float.js',array(), null,true);
+    }
+
+
     wp_enqueue_style( 'style-header', get_template_directory_uri() . '/Assets/css/Header.css' );
 });
 
@@ -27,6 +35,18 @@ function change_empty_alt_to_title( $response ) {
 
 	return $response;
 }
+
+add_action('init', function () {
+    register_post_type('article', [
+        'label' => 'Про дизайн',
+        'public' => true,
+        'menu_icon' => 'dashicons-media-document',
+        'supports' => ['title'],
+        'has_archive' => true,
+        'show_in_rest' => false
+    ]);
+});
+
 
 add_filter( 'wp_prepare_attachment_for_js', 'change_empty_alt_to_title' );
 

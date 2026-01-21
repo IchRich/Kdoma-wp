@@ -1,25 +1,33 @@
-// slider.js — touch‑свайп фикс
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-slider]').forEach(initSlider);
 });
 
 function initSlider(root) {
-    const track   = root.querySelector('.work_slider__track');
-    const slides  = Array.from(root.querySelectorAll('.work_slider__slide'));
-    const dots    = Array.from(root.querySelectorAll('.dot'));
+    const track   = root.querySelector('.slider__track');
+    const slides  = Array.from(track.querySelectorAll('.slide'));
+    const dotsContainer = root.querySelector('.slider__dots');
     const btnPrev = root.querySelector('.nav.prev');
     const btnNext = root.querySelector('.nav.next');
 
     let index = 0;
     let startX = 0, currentX = 0, touching = false;
 
+    // Создание точек
+    const dots = slides.map((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'dot';
+        dotsContainer.appendChild(dot);
+        dot.addEventListener('click', () => {
+            index = i;
+            update();
+        });
+        return dot;
+    });
+
     const update = () => {
         track.style.transform = `translateX(${-index * 100}%)`;
         dots.forEach((d, i) => d.classList.toggle('is_active', i === index));
     };
-
-    // Навигация по точкам
-    dots.forEach((dot, i) => dot.addEventListener('click', () => { index = i; update(); }));
 
     // Кнопки prev/next
     if (btnPrev) btnPrev.addEventListener('click', () => {
@@ -57,5 +65,5 @@ function initSlider(root) {
         update();
     });
 
-    update();
+    update(); // первый рендер
 }
