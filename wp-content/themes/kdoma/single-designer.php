@@ -3,14 +3,49 @@
     <section class="container">
         <div class="breadcrumbs">
             <div class="title-min">
-                <a href="index.html" class="title-glav">Главная</a>
-                <a class="title-glav">/</a>
-                <a class="title-glav">Дизайнеры</a>
-                <a class="title-glav">/</a>
-                <a><?php the_title(); ?></a>
+                <!-- Главная страница -->
+                <a href="<?php echo home_url('/'); ?>" class="title-glav">Главная</a>
+                <span class="title-glav">/</span>
+
+                <!-- Страница дизайнеров -->
+                <?php
+                // Получаем ссылку на страницу архива дизайнеров
+                $designers_archive_url = get_post_type_archive_link('designer');
+
+                // ИЛИ если у вас есть отдельная страница Designers.php с шаблоном
+                // Можно найти страницу по slug или ID
+                $designers_page = get_page_by_path('designers'); // если slug страницы 'designers'
+                
+                if ($designers_page) {
+                    $designers_url = get_permalink($designers_page->ID);
+                } else {
+                    $designers_url = $designers_archive_url ?: '#';
+                }
+                ?>
+                <a href="<?php echo esc_url($designers_url); ?>" class="title-glav">Дизайнеры</a>
+                <span class="title-glav">/</span>
+
+                <!-- Конкретный дизайнер -->
+                <?php
+                $project_id = get_the_ID();
+                $designer_id = get_field('project_designer', $project_id);
+
+                if ($designer_id):
+                    $designer_name = get_the_title($designer_id);
+                    $designer_url = get_permalink($designer_id);
+                    ?>
+                    <a href="<?php echo esc_url($designer_url); ?>" class="title-glav">
+                        <?php echo esc_html($designer_name); ?>
+                    </a>
+                    <span class="title-glav">/</span>
+                <?php endif; ?>
+
+                <!-- Текущий проект (без ссылки, активная страница) -->
+                <span class="current"><?php the_title(); ?></span>
             </div>
             <h1 id="page-title" class="title"><?php the_title(); ?></h1>
         </div>
+
 
         <div class="Designers_Page_Grid">
             <article class="Designers_Grid_Info">
@@ -91,15 +126,26 @@
                 <button class="btn_Archive">ДОП.ИНФОРМАЦИЯ</button>
             </div>
         </div>
+
         <div class="Portfolio">
             <h1 class="title">Портфолио</h1>
             <?php
-            // Получаем проекты
+            // Получаем ID текущего дизайнера (со страницы дизайнера)
+            $current_designer_id = get_the_ID(); // Это ID дизайнера на странице single-designer.php
+            
+            // Получаем проекты ТОЛЬКО этого дизайнера
             $projects = get_posts([
                 'post_type' => 'project',
                 'posts_per_page' => 6,
                 'orderby' => 'menu_order',
-                'order' => 'ASC'
+                'order' => 'ASC',
+                'meta_query' => [
+                    [
+                        'key' => 'project_designer', // Поле ACF для связи с дизайнером
+                        'value' => $current_designer_id,
+                        'compare' => '='
+                    ]
+                ]
             ]);
 
             if ($projects):
@@ -112,9 +158,9 @@
                         $project_url = get_permalink($project_id);
 
                         // Получаем специальное изображение для сетки из ACF
-                        $grid_image = get_field('portfolio_grid_image', $project_id); // поле ACF для картинки сетки
-                        $is_big_image = get_field('is_big_in_grid', $project_id); // поле ACF для размера
-                
+                        $grid_image = get_field('portfolio_grid_image', $project_id);
+                        $is_big_image = get_field('is_big_in_grid', $project_id);
+
                         // Если нет специального поля, используем миниатюру
                         if (!$grid_image && has_post_thumbnail($project_id)) {
                             $grid_image = get_the_post_thumbnail_url($project_id, 'large');
@@ -161,11 +207,23 @@
                 </div>
 
             <?php else: ?>
-                <p class="no-projects">Проектов пока нет. Добавьте их в админке.</p>
+                <p class="no-projects">У этого дизайнера пока нет проектов.</p>
             <?php endif; ?>
-            <div class="actions">
-                <button class="btn_Archive">ВСЕ ПРОЕКТЫ <img src="<?php bloginfo('template_url') ?>/Assets/image/button_icon.webp" alt=""></button>
-            </div>
+
+            <?php
+            // Кнопка "ВСЕ ПРОЕКТЫ" - можно оставить или убрать
+            // Если оставить, она может вести на страницу со всеми проектами дизайнера
+            if ($projects && count($projects) > 6):
+                $all_projects_url = add_query_arg('show_all', 'true', get_permalink($current_designer_id));
+                ?>
+                <div class="actions">
+                    <a href="<?php echo esc_url($all_projects_url); ?>" class="btn_Archive">
+                        ВСЕ ПРОЕКТЫ
+                        <img src="<?php bloginfo('template_url') ?>/Assets/image/button_icon.webp" alt="">
+                    </a>
+                </div>
+            <?php endif; ?>
+        </div>
         </div>
     </section>
     <section class="Publications">
@@ -173,20 +231,24 @@
             <h1 class="title">Публикации</h1>
             <div class="Portfolio_Grid">
                 <article class="Portfolio_Grid_Info">
-                    <img class="Portfolio_Grid_Info_Img_Mini" src="<?php bloginfo('template_url') ?>/Assets/image/Brodskogo.svg" alt="">
+                    <img class="Portfolio_Grid_Info_Img_Mini"
+                        src="<?php bloginfo('template_url') ?>/Assets/image/Brodskogo.svg" alt="">
                     <p>Трехуровневая квартира в немецком фонде</p>
                 </article>
                 <article class="Portfolio_Grid_Info">
-                    <img class="Portfolio_Grid_Info_Img_Mini" src="<?php bloginfo('template_url') ?>/Assets/image/Koloskov.svg" alt="">
+                    <img class="Portfolio_Grid_Info_Img_Mini"
+                        src="<?php bloginfo('template_url') ?>/Assets/image/Koloskov.svg" alt="">
                     <p>Авторская подача</p>
                 </article>
                 <article class="Portfolio_Grid_Info_Big">
-                    <img class="Portfolio_Grid_Info_Img" src="<?php bloginfo('template_url') ?>/Assets/image/ApartmentInterior.svg" alt="">
+                    <img class="Portfolio_Grid_Info_Img"
+                        src="<?php bloginfo('template_url') ?>/Assets/image/ApartmentInterior.svg" alt="">
                     <p>Стены как картины</p>
                 </article>
             </div>
             <div class="actions_publications">
-                <button class="btn_Archive">ВСЕ ПУБЛИКАЦИИ <img src="<?php bloginfo('template_url') ?>/Assets/image/button_icon.webp" alt=""></button>
+                <button class="btn_Archive">ВСЕ ПУБЛИКАЦИИ <img
+                        src="<?php bloginfo('template_url') ?>/Assets/image/button_icon.webp" alt=""></button>
             </div>
         </div>
     </section>

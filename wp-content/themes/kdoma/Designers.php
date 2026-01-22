@@ -42,7 +42,7 @@ Template Name: Designers
             </aside>
             <div class="breadcrumbs">
                 <div class="title-min">
-                    <a href="index.html" class="title-glav">Главная</a>
+                    <a href="<?php echo home_url('/'); ?>" class="title-glav">Главная</a>
                     <a>/</a>
                     <a>Дизайнеры</a>
                 </div>

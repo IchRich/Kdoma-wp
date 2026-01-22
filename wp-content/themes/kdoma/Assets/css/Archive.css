@@ -379,7 +379,7 @@ body {
     background-position: center;
 }
 
-.card__cover__year_img
+.card__cover__year img
 {
     max-width: unset;
     height: 100%;
@@ -412,7 +412,7 @@ body {
     overflow: hidden;
 }
 
-.card__cover_img {
+.card__cover img {
     width: 100%;
     height: 100%;
     object-fit: cover;

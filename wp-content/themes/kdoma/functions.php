@@ -8,12 +8,6 @@ add_action('wp_enqueue_scripts', function () {
 	wp_enqueue_style('style-designer-page', get_template_directory_uri() . '/Assets/css/DesignersPage.css');
 
 	wp_enqueue_script('slider', get_template_directory_uri() . '/Assets/js/slider.js');
-
-	if ( is_singular('article') ) {
-    wp_enqueue_style( 'style-events', get_template_directory_uri() . '/Assets/css/Interiorm.css' );
-      wp_enqueue_script('script-slider',get_template_directory_uri() . '/Assets/js/slider.js',array(), null,true);
-      wp_enqueue_script('script-brand-float',get_template_directory_uri() . '/Assets/js/brand-float.js',array(), null,true);
-    }
 });
 
 
@@ -101,4 +95,115 @@ function register_project_post_type() {
             'add_new_item' => 'Добавить новый проект',
         ]
     ]);
+}
+
+
+
+
+// Для отображения проектов у дизайнера 
+add_action('add_meta_boxes', 'add_designer_projects_table_meta_box');
+function add_designer_projects_table_meta_box() {
+    add_meta_box(
+        'designer_projects_table',
+        'Проекты дизайнера',
+        'render_designer_projects_table_meta_box',
+        'designer',
+        'normal',
+        'high'
+    );
+}
+
+function render_designer_projects_table_meta_box($post) {
+    $designer_id = $post->ID;
+    
+    // Получаем проекты
+    $projects = get_posts([
+        'post_type' => 'project',
+        'posts_per_page' => -1,
+        'meta_query' => [[
+            'key' => 'project_designer',
+            'value' => $designer_id,
+            'compare' => '='
+        ]],
+        'orderby' => 'date',
+        'order' => 'DESC'
+    ]);
+    
+    if (empty($projects)) {
+        echo '<div class="notice notice-info">';
+        echo '<p>У этого дизайнера пока нет проектов.</p>';
+        echo '</div>';
+        
+        echo '<p><a href="' . admin_url('post-new.php?post_type=project') . '" class="button button-primary">';
+        echo 'Создать первый проект';
+        echo '</a></p>';
+        
+        return;
+    }
+    
+    // Статистика
+    $published = 0;
+    $draft = 0;
+    foreach ($projects as $project) {
+        if ($project->post_status == 'publish') $published++;
+        else $draft++;
+    }
+    
+    echo '<div class="designer-stats" style="margin-bottom:20px; background:#f5f5f5; padding:10px; border-left:4px solid #0073aa;">';
+    echo '<h3 style="margin-top:0;">Статистика:</h3>';
+    echo '<p>Всего проектов: <strong>' . count($projects) . '</strong></p>';
+    echo '<p>Опубликовано: <strong>' . $published . '</strong></p>';
+    echo '<p>Черновиков: <strong>' . $draft . '</strong></p>';
+    echo '</div>';
+    
+    // Таблица проектов
+    echo '<table class="wp-list-table widefat fixed striped" style="width:100%;">';
+    echo '<thead>';
+    echo '<tr>';
+    echo '<th style="width:50%;">Название проекта</th>';
+    echo '<th>Статус</th>';
+    echo '<th>Дата</th>';
+    echo '<th>Действия</th>';
+    echo '</tr>';
+    echo '</thead>';
+    echo '<tbody>';
+    
+    foreach ($projects as $project) {
+        $project_id = $project->ID;
+        $edit_link = get_edit_post_link($project_id);
+        $view_link = get_permalink($project_id);
+        
+        // Статус
+        $status = get_post_status_object($project->post_status);
+        $status_label = $status ? $status->label : $project->post_status;
+        $status_class = ($project->post_status == 'publish') ? 'status-publish' : 'status-draft';
+        
+        echo '<tr>';
+        
+        // Название
+        echo '<td>';
+        echo '<strong><a href="' . esc_url($edit_link) . '">' . esc_html($project->post_title) . '</a></strong>';
+        echo '</td>';
+        
+        // Статус
+        echo '<td><span class="' . $status_class . '">' . esc_html($status_label) . '</span></td>';
+        
+        // Дата
+        echo '<td>' . get_the_date('d.m.Y', $project_id) . '</td>';
+        
+        // Действия
+        echo '<td>';
+        echo '<a href="' . esc_url($edit_link) . '" class="button button-small">Редактировать</a> ';
+        
+        echo '</tr>';
+    }
+    
+    echo '</tbody>';
+    echo '</table>';
+    
+    // Быстрые действия
+    echo '<div style="margin-top:15px;">';
+    echo '<a href="' . admin_url('edit.php?post_type=project') . '" class="button">Все проекты</a> ';
+    echo '<a href="' . admin_url('post-new.php?post_type=project') . '" class="button button-primary">Добавить проект</a>';
+    echo '</div>';
 }
