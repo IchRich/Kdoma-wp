@@ -34,10 +34,10 @@ body {
   margin-inline: auto;
 }
 
-
-
-
-
+.section_gallery
+{
+  margin-bottom: 5.2vw;
+}
 
 .cards_grid {
   display: grid;
@@ -134,6 +134,11 @@ body {
 
   .actions {
     margin: 5.5vw 0 16.7vw;
+  }
+
+  .section_gallery
+  {
+    margin-bottom: 16.7vw;
   }
 
   .btn {

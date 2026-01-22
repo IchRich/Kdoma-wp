@@ -63,47 +63,62 @@ Template Name: Home
         </div>
     </section>
 
-    <!-- Про дизайн -->
-     <section class="about_design" aria-labelledby="about_design_title">
-        <h2 id="about_design_title">Про дизайн</h2>
-        <div class="about_design_row">
-         <?php
-        global $post;
-        $i = 1;
-        $myposts = get_posts([
-	        'numberposts' => 3,
-	        'offset'      => 0,
-            'orderby'     => 'date',
-	        'category'    => 3, // рубрика "про дизайн"
-             
-        ]);
+<!-- Про дизайн -->
+<section class="about_design" aria-labelledby="about_design_title">
+    <h2 id="about_design_title">Про дизайн</h2>
 
-        if( $myposts ){
-            foreach( $myposts as $post ){
-                setup_postdata( $post );
-                ?>
-                <figure class="about_design_card fig_<?=$i?>">
-                    <img src="<?=the_post_thumbnail_url();?>" alt="Интерьер 1" loading="lazy">
-                    <figcaption><?=the_title()?></figcaption>
+    <div class="about_design_row">
+    <?php
+    $posts = get_posts([
+        'post_type'   => 'article', // 🔴 ВАЖНО
+        'numberposts' => 3,
+        'orderby'     => 'date',
+        'order'       => 'DESC',
+        'post_status' => 'publish',
+    ]);
+
+    if ($posts):
+        foreach ($posts as $post):
+            setup_postdata($post);
+            ?>
+            
+            <a href="<?php the_permalink(); ?>" class="about_design_card_link">
+                <figure class="about_design_card">
+                    
+                    <?php if (has_post_thumbnail()): ?>
+                        <img
+                            src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'large')); ?>"
+                            alt="<?php echo esc_attr(get_the_title()); ?>"
+                            loading="lazy"
+                        >
+                    <?php endif; ?>
+
+                    <figcaption>
+                        <?php echo esc_html(get_the_title()); ?>
+                    </figcaption>
+
                 </figure>
-                <?php
-                $i++;
-            }
-        } else { ?>
-
-        <?php
-        echo "Посты не найдены.";
-        }
-
-wp_reset_postdata(); // сброс поста
-?>       
-        </div>
-        <div class="about_design_footer">
-            <a href="AboutDesign.html" class="about_design_all">
-                СМОТРЕТЬ ВСЕ <img src="<?php bloginfo('template_url')?>/Assets/image/SecondPointer.png" alt="перейти" class="design_arrow" loading="lazy">
             </a>
-        </div>
-    </section>  
+
+            <?php
+        endforeach;
+        wp_reset_postdata();
+    else:
+        echo '<p>Статьи не найдены</p>';
+    endif;
+    ?>
+</div>
+
+    </div>
+
+    <div class="about_design_footer">
+        <a href="<?php echo get_category_link(get_category_by_slug('pro-design')); ?>" class="about_design_all">
+            СМОТРЕТЬ ВСЕ
+            <img src="<?php bloginfo('template_url'); ?>/Assets/image/SecondPointer.png" alt="" loading="lazy">
+        </a>
+    </div>
+</section>
+
 
     <!-- Журнал -->
     <section class="journal_block" aria-labelledby="journal_title">

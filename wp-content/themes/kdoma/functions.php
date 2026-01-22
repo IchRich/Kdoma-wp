@@ -17,9 +17,21 @@ add_action( 'wp_enqueue_scripts', function () {
       wp_enqueue_script('script-brand-float',get_template_directory_uri() . '/Assets/js/brand-float.js',array(), null,true);
     }
 
+    if ( is_singular('interior') ) {
+	  wp_enqueue_style( 'style-events', get_template_directory_uri() . '/Assets/css/Interiorm.css' );
+      wp_enqueue_script('script-slider',get_template_directory_uri() . '/Assets/js/slider.js',array(), null,true);
+      wp_enqueue_script('script-brand-float',get_template_directory_uri() . '/Assets/js/brand-float.js',array(), null,true);
+    }
+
 
     wp_enqueue_style( 'style-header', get_template_directory_uri() . '/Assets/css/Header.css' );
 });
+
+function theme_enqueue_styles() {
+    wp_enqueue_style('main-style', get_template_directory_uri() . '/Assets/css/Interior.css');
+}
+add_action('wp_enqueue_scripts', 'theme_enqueue_styles');
+
 
 /**
  * Заполняет поле для атрибута alt на основе заголовка изображения при его вставки в контент поста.
@@ -42,6 +54,18 @@ add_action('init', function () {
         'public' => true,
         'menu_icon' => 'dashicons-media-document',
         'supports' => ['title'],
+        'has_archive' => true,
+        'show_in_rest' => false
+    ]);
+});
+
+add_action('init', function () {
+    register_post_type('interior', [
+        'label' => 'Интерьеры',
+        'public' => true,
+        'menu_icon' => 'dashicons-media-document',
+        'supports' => ['title', 'thumbnail'],
+        'rewrite' => ['slug' => 'interior'],
         'has_archive' => true,
         'show_in_rest' => false
     ]);

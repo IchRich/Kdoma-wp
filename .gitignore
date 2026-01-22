@@ -16,6 +16,8 @@
 /readme.html
 /wp-*.php
 /xmlrpc.php
+/wp-content/plugins/wp-all-import
+/wp-content/plugins/woocommerce
 
 # Configuration
 wp-config.php
