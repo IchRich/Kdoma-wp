@@ -127,3 +127,15 @@ function fix_svg_mime_type( $data, $file, $filename, $mimes, $real_mime = '' ){
 	return $data;
 }
 add_filter('wpcf7_autop_or_not', '__return_false');
+// Сохранять JSON здесь
+add_filter('acf/settings/save_json', function($path) {
+    $path = get_stylesheet_directory() . '/acf-json';
+    return $path;
+});
+
+// Загружать JSON из этой папки
+add_filter('acf/settings/load_json', function($paths) {
+    unset($paths[0]); // удаляем стандартный путь
+    $paths[] = get_stylesheet_directory() . '/acf-json';
+    return $paths;
+});
