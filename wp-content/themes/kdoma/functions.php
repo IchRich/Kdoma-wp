@@ -53,7 +53,7 @@ add_action('init', function () {
         'label' => 'Про дизайн',
         'public' => true,
         'menu_icon' => 'dashicons-media-document',
-        'supports' => ['title'],
+        'supports' => ['title', 'thumbnail'],
         'has_archive' => true,
         'show_in_rest' => false
     ]);

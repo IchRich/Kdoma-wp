@@ -12,7 +12,7 @@ get_header();
         <div class="title-min">
             <a href="<?php echo home_url('/'); ?>" class="title-glav">Главная</a>
             <a class="title-glav">/</a>
-            <a href="<?php echo home_url('/'); ?>" class="title-glav">Про дизайн</a>
+            <a href="<?php echo home_url('/article'); ?>" class="title-glav">Про дизайн</a>
             <a class="title-glav">/</a>
 
             <?php
