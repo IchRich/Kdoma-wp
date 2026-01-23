@@ -15,7 +15,8 @@
 <body>
 
 <?php get_header(); ?>
-<main class="publish-project-page">
+
+<main>
     <section class="container">
         <div class="breadcrumbs">
             <div class="title-min">
@@ -25,24 +26,121 @@
                 <span class="title-glav">/</span>
                 <span>Заявка на публикацию интерьера</span>
             </div>
-            <h1 id="page-title" class="title"><?php the_field('title'); ?></h1>
+            <h1 id="page-title" class="title">Заявка на публикацию интерьера</h1>
         </div>
         
         <div class="Dear_architects">
-            <h1><?php the_field('form_intro_text'); ?></h1>
+            <h1>Уважаемые архитекторы и дизайнеры! <br>
+                Вы можете подать заявку на публикацию вашего объекта в журнале «Калининградские дома» и на сайте kdoma.ru .</h1>
         </div>
-        <div class="Nominations">
-            <?php echo do_shortcode('[contact-form-7 id="c8cc485" title="Форма заявки на публикацию проекта"]');?>
-        </div>
+        
+        <!-- ВСТАВЬТЕ ШОРТКОД ФОРМЫ CF7 ЗДЕСЬ -->
+        <?php 
+        // Замените 123 на реальный ID вашей формы CF7
+        echo do_shortcode('[contact-form-7 id="c8cc485" title="Форма заявки на публикацию проекта"]');
+        ?>
+        
     </section>
 </main>
 
 <?php get_footer(); ?>
-<?php get_footer(); ?>
 
 </body>
 </html>
+<!-- <div class="Nominations_flex">
+    <div class="Nominations_flex_g1">
+        <h1 class="Nominations_titel">О дизайнере</h1>
+        <div class="Nominations_grid">
+            <article class="Nominations_article">
+                <p>ФИО</p>
+                [text* designer-name placeholder "Иванов Иван Иванович"]
+            </article>
+            <article class="Nominations_article">
+                <p>E-mail</p>
+                [email* designer-email placeholder "example@mail.ru"]
+            </article>
+            <article class="Nominations_article">
+                <p>Телефон</p>
+                [tel* designer-phone placeholder "+7 (999) 999-99-99"]
+            </article>
+            <article class="Nominations_article">
+                <p>Ссылки на ваши социальные сети</p>
+                [url designer-social placeholder "https://vk.com/username"]
+            </article>
+        </div>
+    </div>
+    <div class="Nominations_flex_g2">
+        <h1 class="Nominations_titel">Об объекте</h1>
+        <div class="Nominations_grid">
+            <article class="Nominations_article">
+                <p>Категория объекта</p>
+                [select* object-category include_blank "Дом" "Общественное помещение" "Апартаменты"]
+            </article>
+            <article class="Nominations_article">
+                <p>Местоположение объекта</p>
+                [text* object-location placeholder "г. Калининград, ул. Примерная, д. 1"]
+            </article>
+            <article class="Nominations_article">
+                <p>Название ЖК/серия дома</p>
+                [text object-complex placeholder "ЖК 'Новый город'"]
+            </article>
+            <article class="Nominations_article">
+                <p>Площадь объекта</p>
+                [text* object-area placeholder "85 кв.м."]
+            </article>
+        </div>
+    </div>
+</div>
 
+<div class="Nominations">
+    <h1 class="Nominations_titel">Дополнительная информация</h1>
+</div>
+
+<div class="Nominations_flex">
+    <div class="Nominations_flex_g1">
+        <div class="Nominations_grid">
+            <article class="Nominations_article">
+                <p>Описание объекта (напишите несколько предложений, но не более 12-15, о стиле, основной идее, средствах достижения, производителей мебели и декора):</p>
+                [textarea* object-description maxlength:500 placeholder "Опишите ваш проект..."]
+            </article>
+            <article class="Nominations_article">
+                <p>Автор фотосъемки</p>
+                [text photo-author placeholder "ФИО фотографа"]
+            </article>
+        </div>
+    </div>
+    <div class="Nominations_flex_g2">
+        <div class="Nominations_grid">
+            <article class="Nominations_article">
+                <p>Ссылка на фото (загрузите фотографии объекта на любой файлообменник и приложите ссылку, также необходимо загрузить планы До и После перепланировки):</p>
+                [url* photo-link placeholder "https://drive.google.com/..."]
+            </article>
+            <article class="Nominations_article">
+                <p>Годы начала/окончания работ</p>
+                [text* work-years placeholder "2023-2024"]
+            </article>
+        </div>
+    </div>
+</div>
+
+<div class="Nominationss">
+    <div class="Nominations_grid_dop">
+        <div class="Nominations_grid_dop_flex">
+            <div>
+                [acceptance personal-data] Принимаю условия обработки персональных данных. [/acceptance]
+            </div>
+            <div>
+                [acceptance privacy-policy] Принимаю условия Политики конфиденциальности. [/acceptance]
+            </div>
+            <div>
+                [acceptance copyright-agreement] Присылая фотографии интерьеров для участия в Премии "Калининградский дизайн" заявитель гарантирует наличие у него исключительного права на фотографии и дает согласие для размещения их на сайте kdoma.ru, а также подтверждает достоверность заявленных в заявке сведений. [/acceptance]
+            </div>
+            
+            [submit class:btn class:btn--primary "Отправить"]
+        </div>
+        <div class="Dear_architectss"></div>
+    </div>
+</div> -->
 <style>
 /* Принудительные стили для CF7 */
 .wpcf7-form input[type="text"],
