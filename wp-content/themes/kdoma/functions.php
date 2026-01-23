@@ -6,6 +6,7 @@ add_action('wp_enqueue_scripts', function () {
 	wp_enqueue_style('style-archive', get_template_directory_uri() . '/Assets/css/Archive.css');
 	wp_enqueue_style('style-designers', get_template_directory_uri() . '/Assets/css/Designers.css');
 	wp_enqueue_style('style-designer-page', get_template_directory_uri() . '/Assets/css/DesignersPage.css');
+	wp_enqueue_style('style-publisher-project', get_template_directory_uri() . '/Assets/css/PublishProject.css');
 
 	wp_enqueue_script('slider', get_template_directory_uri() . '/Assets/js/slider.js');
 });

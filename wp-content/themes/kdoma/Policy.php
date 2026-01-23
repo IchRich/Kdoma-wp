@@ -2,11 +2,11 @@
 /**
  * Template Name: Policy
  */
-get_header();
 ?>
+<?php get_header(); ?>
 
 <div class="container">
-
+    
     <?php
     // Способ 1: Полный текст в одном поле
     if (get_field('policy_full_content')):
