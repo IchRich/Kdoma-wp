@@ -26,12 +26,11 @@
                 <span class="title-glav">/</span>
                 <span>Заявка на публикацию интерьера</span>
             </div>
-            <h1 id="page-title" class="title">Заявка на публикацию интерьера</h1>
+            <h1 id="page-title" class="title"><?php echo get_field('title'); ?></h1>
         </div>
         
         <div class="Dear_architects">
-            <h1>Уважаемые архитекторы и дизайнеры! <br>
-                Вы можете подать заявку на публикацию вашего объекта в журнале «Калининградские дома» и на сайте kdoma.ru .</h1>
+            <?php echo get_field(selector: 'form_intro_text'); ?>
         </div>
         
         <!-- ВСТАВЬТЕ ШОРТКОД ФОРМЫ CF7 ЗДЕСЬ -->
