@@ -18,6 +18,13 @@ add_action( 'wp_enqueue_scripts', function () {
     wp_enqueue_style( 'style-companies', get_template_directory_uri() . '/Assets/css/Company.css' );}
     if(is_singular('company')){
     wp_enqueue_style( 'style-company', get_template_directory_uri() . '/Assets/css/Companym.css' );}
+
+    wp_enqueue_style(
+  'design-week',
+  get_template_directory_uri() . '/Assets/css/DesignWeek.css',
+  [],
+  null
+);
 });
 add_action('init', function () {
     register_post_type('eventsm', [
