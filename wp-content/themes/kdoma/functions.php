@@ -8,6 +8,8 @@ add_action('wp_enqueue_scripts', function () {
 	wp_enqueue_style('style-designer-page', get_template_directory_uri() . '/Assets/css/DesignersPage.css');
 
 	wp_enqueue_script('slider', get_template_directory_uri() . '/Assets/js/slider.js');
+	wp_enqueue_script('brand-float', get_template_directory_uri() . '/Assets/js/brand-float.js');
+	wp_enqueue_script('brand-float-interiorm', get_template_directory_uri() . '/Assets/js/brand-float_interiorm.js');
 });
 
 

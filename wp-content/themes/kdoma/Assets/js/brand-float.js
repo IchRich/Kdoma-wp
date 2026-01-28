@@ -1,96 +1,98 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const el = document.getElementById('brandStack');            // плавающий баннер
-    const boundEl = document.getElementById('bezsmolova_elena'); // нижний ограничитель
-    const container = document.querySelector('.container');      // основной контейнер
-    const firstRow = document.querySelector('.cards > .row');    // первая строка/карточка
-    if (!el || !container || !firstRow) return;
-
-    // Стили, чтобы позиционироваться относительно контейнера
-    container.style.position ||= 'relative';
-    el.style.position = 'absolute';
-    el.style.willChange = 'transform';
-    el.style.transform = 'translateY(0)';
-
-    // Прижимаем баннер к правому внутреннему краю контейнера
-    function stickRightEdge() {
-        const cRect = container.getBoundingClientRect();
-        const eRect = el.getBoundingClientRect();
-        // Ставим right: 0 внутри контейнера, убираем старые right/left в px
-        el.style.right = '0px';
-        el.style.left = 'auto';
-        // Фикс на случай глобальных паддингов у контейнера: ничего не делаем, right:0 уже учитывает padding.
+class StickyBrandStackObserver {
+    constructor() {
+        this.stickyElement = document.getElementById('brandStack');
+        this.container = document.querySelector('.container.content');
+        this.cardsContainer = document.querySelector('ul.cards');        
+        this.sentinelTop = document.createElement('div');
+        this.sentinelBottom = document.createElement('div');
+        
+        this.init();
     }
-
-    // Вычисляем базовую верхнюю позицию по первой .row
-    let baseTop = 0;
-    function alignToFirstRowTop() {
-        const cTop = container.getBoundingClientRect().top + window.scrollY;
-        const rTop = firstRow.getBoundingClientRect().top + window.scrollY;
-        baseTop = Math.max(0, Math.round(rTop - cTop)); // смещение от верхнего края контейнера
-        el.style.top = baseTop + 'px';
+    
+    init() {
+        if (!this.stickyElement || !this.container || !this.cardsContainer) return;
+        
+        this.setupSentinels();
+        this.setupObservers();
     }
-
-    // Ограничиваем нижнюю границу как у вас
-    const ease = 0.15;
-    let targetY = 0;
-    let currentY = 0;
-    let ticking = false;
-
-    function getMaxTranslateY() {
-        if (!boundEl) return 0;
-        const cTop = container.getBoundingClientRect().top + window.scrollY;
-        const boundBottom = boundEl.getBoundingClientRect().bottom + window.scrollY;
-        const elHeight = el.offsetHeight;
-        // низ баннера не ниже низа boundEl; учитываем базовый top
-        return Math.max(0, boundBottom - (cTop + baseTop) - elHeight);
+    
+    setupSentinels() {
+        // Верхний маркер - начало контейнера
+        this.sentinelTop.className = 'sticky-sentinel-top';
+        this.sentinelTop.style.cssText = 'position: absolute; top: 0; left: 0; width: 1px; height: 1px; pointer-events: none;';
+        this.container.prepend(this.sentinelTop);
+        
+        // Нижний маркер - конец контейнера с карточками, минус высота dots
+        this.sentinelBottom.className = 'sticky-sentinel-bottom';
+        
+        // Вычисляем высоту dots элемента
+        const dotsHeight = this.dotsElement ? this.dotsElement.offsetHeight : 0;
+        
+        // Устанавливаем позицию с учетом высоты dots
+        this.sentinelBottom.style.cssText = `position: absolute; bottom: ${dotsHeight}px; left: 0; width: 1px; height: 1px; pointer-events: none;`;
+        
+        // Вставляем маркер в конец контейнера с карточками
+        this.cardsContainer.appendChild(this.sentinelBottom);
     }
-
-    function onScroll() {
-        const maxY = getMaxTranslateY();
-        // Двигаем плавно, но не выше и не ниже пределов
-        targetY = Math.min(window.scrollY - (container.getBoundingClientRect().top + window.scrollY - 0), maxY);
-        targetY = Math.max(0, targetY);
-        requestTick();
+    
+    setupObservers() {
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0
+        };
+        
+        // Наблюдатель за верхним маркером
+        this.topObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.stickyElement.classList.remove('sticky-active');
+                } else {
+                    this.stickyElement.classList.add('sticky-active');
+                }
+            });
+        }, options);
+        
+        // Наблюдатель за нижним маркером
+        this.bottomObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.stickyElement.classList.remove('sticky-active');
+                    this.stickyElement.classList.add('sticky-bottom');
+                } else {
+                    this.stickyElement.classList.remove('sticky-bottom');
+                }
+            });
+        }, options);
+        
+        this.topObserver.observe(this.sentinelTop);
+        this.bottomObserver.observe(this.sentinelBottom);
     }
-
-    function requestTick() {
-        if (!ticking) {
-            requestAnimationFrame(update);
-            ticking = true;
+    
+    // Метод для обновления при изменении размера окна
+    updateOnResize() {
+        // Пересоздаем маркеры при изменении размера
+        this.setupSentinels();
+    }
+    
+    destroy() {
+        if (this.topObserver) {
+            this.topObserver.disconnect();
+        }
+        if (this.bottomObserver) {
+            this.bottomObserver.disconnect();
         }
     }
+}
 
-    function update() {
-        const delta = targetY - currentY;
-        currentY += delta * ease;
-        el.style.transform = `translateY(${currentY}px)`;
-        if (Math.abs(delta) > 0.5) {
-            requestAnimationFrame(update);
-        } else {
-            ticking = false;
-        }
+// Инициализация
+document.addEventListener('DOMContentLoaded', function() {
+    if ('IntersectionObserver' in window) {
+        const stickyObserver = new StickyBrandStackObserver();
+        
+        // Обновляем при изменении размера окна
+        window.addEventListener('resize', function() {
+            stickyObserver.updateOnResize();
+        });
     }
-
-    function recalcAll() {
-        // Ставим к правому краю контейнера и выравниваем по верхней кромке первой строки
-        stickRightEdge();
-        alignToFirstRowTop();
-        // Сбрасываем смещение при ресайзе, чтобы не залипало
-        currentY = 0;
-        targetY = Math.min(0, getMaxTranslateY());
-        el.style.transform = 'translateY(0)';
-        requestTick();
-    }
-
-    // Инициализация
-    recalcAll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', () => { recalcAll(); onScroll(); }, { passive: true });
-
-    // На случай изображений/шрифтов — пересчет после загрузки
-    window.addEventListener('load', () => { recalcAll(); onScroll(); });
-
-    // Если в контенте внутри карточек меняется высота — наблюдатель
-    const mo = new MutationObserver(() => { recalcAll(); onScroll(); });
-    mo.observe(document.querySelector('.cards'), { childList: true, subtree: true });
 });
